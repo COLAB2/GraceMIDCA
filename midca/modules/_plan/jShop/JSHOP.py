@@ -9,9 +9,9 @@ def jshop(tasks, DOMAIN_FIILE, STATE_FILE):
 #     thisDir = "C:/Users/Zohreh/git/midca/modules/_plan/jShop/"
     MIDCA_ROOT = thisDir + "/../../../"
 
-#   DOMAIN_FIILE = MIDCA_ROOT + "domains/jshop_domains/blocks_world/blocksworld.shp"
+#   DOMAIN_FIILE = MIDCA_ROOT + "domains/jshop_domains/grace/graceDomain.shp"
 #     #DOMAIN_FIILE = JSHOP_ROOT + "domains/jshop_domains/blocks_world/blocksworld.shp"
-#    STATE_FILE = MIDCA_ROOT + "domains/jshop_domains/blocks_world/bw_ran_problems_5.shp"
+#    STATE_FILE = MIDCA_ROOT + "domains/jshop_domains/grace/graceProblem.shp"
 #
 #     f = open(STATE_FILE, 'r')
 #     a = f.read()
@@ -55,5 +55,10 @@ def parse(str):
     return plan
 
 if __name__ == "__main__":
-    jshop("tasks", "/Users/sravyakondrakunta/Desktop/untitled folder/blocksworld2.shp",
-    "/Users/sravyakondrakunta/Desktop/untitled folder/bw_ran_problems_5.shp")
+    thisDir =  os.path.dirname(os.path.realpath(__file__))
+#     thisDir = "C:/Users/Zohreh/git/midca/modules/_plan/jShop/"
+    MIDCA_ROOT = thisDir + "/../../../"
+    DOMAIN_FIILE = MIDCA_ROOT + "domains/jshop_domains/grace/graceDomain.shp"
+#     #DOMAIN_FIILE = JSHOP_ROOT + "domains/jshop_domains/blocks_world/blocksworld.shp"
+    STATE_FILE = MIDCA_ROOT + "domains/jshop_domains/grace/graceProblem.shp"
+    jshop("tasks", DOMAIN_FIILE, STATE_FILE)
