@@ -1,0 +1,43 @@
+(defdomain grace-fish
+  (
+
+    (:operator (!move-fish-down ?fish ?loc-from ?loc-to)
+               ()
+               ((fish-at ?fish ?loc-from) (top ?loc-from ?loc-to))
+               ((fish-at ?fish ?loc-to)) )
+
+    (:operator (!move-fish-up ?fish ?loc-from ?loc-to)
+               ()
+               ((fish-at ?fish ?loc-from) (down ?loc-from ?loc-to))
+               ((fish-at ?fish ?loc-to)) )
+
+    (:method (achieve-goals (list ?goal . ?goals))
+     ()
+     ((achieve-goal ?goal)(achieve-goals list ?goals)))
+
+    (:method (achieve-goals nil ?goal)
+             ()
+             ((achieve-goal ?goal)))
+
+   (:method (achieve-goals list nil)
+            ()
+            ())
+
+
+   (:method (achieve-goal (fish-at ?fish ?loc-b))
+
+             ;; If the
+             ((fish-at ?fish ?loc-a)
+              (different ?loc-a ?loc-b) (top ?loc-a ?loc-b) )
+             ((!move-fish-down ?fish ?loc-a ?loc-b))
+
+             ((fish-at ?fish ?loc-a)
+              (different ?loc-a ?loc-b) (down ?loc-a ?loc-b) )
+             ((!move-fish-up ?fish ?loc-a ?loc-b))
+
+             ((fish-at ?fish ?loc-a)
+              (same ?loc-a ?loc-b))
+             ((fish-at ?fish ?loc-b)))
+
+  (:- (different ?x ?y) ((not (same ?x ?y))))
+  (:- (down ?x ?y) ((not (top ?x ?y)))) ))
