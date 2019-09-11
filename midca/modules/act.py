@@ -1,7 +1,6 @@
 from midca.modules._plan.asynch import asynch
 from midca import base
 import copy
-import zmq
 
 
 class AsynchronousAct(base.BaseModule):

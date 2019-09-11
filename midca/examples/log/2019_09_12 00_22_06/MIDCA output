@@ -1,0 +1,63 @@
+.001000 - [cognitive] Initializing Simulate module 1 MidcaActionSimulator...done.
+
+.008000 - [cognitive] Initializing Perceive module 1 PerfectObserver...done.
+
+.013000 - [cognitive] Initializing Interpret module 1 UserGoalInput...done.
+
+.020000 - [cognitive] Initializing Eval module 1 SimpleEval...done.
+
+.029000 - [cognitive] Initializing Intend module 1 SimpleIntend...done.
+
+.048000 - [cognitive] Initializing Plan module 1 JSHOPPlanner...done.
+
+.054000 - [cognitive] Initializing Act module 1 SimpleAct...done.
+
+.066000 - Goal Graph initialized.
+
+.091000 - To use goal ordering, call initGoalGraph manually with a custom goal comparator
+
+.100000 - 
+MIDCA is starting. Please enter commands, or '?' + enter for help. Pressing enter with no input will advance the simulation by one phase.
+
+5.221000 - Starting cycle 0
+
+5.231000 - ****** Starting Simulate Phase ******
+
+5.258000 - Simulator: no actions selected yet by MIDCA.
+
+5.645000 - ****** Starting Perceive Phase ******
+
+5.698000 - World observed.
+
+7.293000 - ****** Starting Interpret Phase ******
+
+7.355000 - Please input a goal if desired. Otherwise, press enter to continue
+
+21.925000 - Goal added.
+
+21.941000 - Please input a goal if desired. Otherwise, press enter to continue
+
+23.083000 - ****** Starting Eval Phase ******
+
+23.118000 - No current goals. Skipping eval
+
+24.329000 - ****** Starting Intend Phase ******
+
+24.369000 - Selecting goal(s): Goal(fish1, b, predicate: fish-at)
+
+25.440000 - ****** Starting Plan Phase ******
+
+25.490000 - Planning...
+
+25.682000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceDomain.shp
+
+25.698000 - Domain file parsed successfully
+
+25.713000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceProblem.shp
+
+25.734000 - ListLogicalAtoms expecting (: ) expected
+
+25.752000 - Error in parsing file
+
+25.771000 - Planning failed for  Goal(fish1, b, predicate: fish-at)  
+

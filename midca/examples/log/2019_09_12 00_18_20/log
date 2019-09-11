@@ -1,0 +1,91 @@
+.003000 - [cognitive] Initializing Simulate module 1 MidcaActionSimulator...done.
+
+.010000 - [cognitive] Initializing Perceive module 1 PerfectObserver...done.
+
+.016000 - [cognitive] Initializing Interpret module 1 UserGoalInput...done.
+
+.022000 - [cognitive] Initializing Eval module 1 SimpleEval...done.
+
+.030000 - [cognitive] Initializing Intend module 1 SimpleIntend...done.
+
+.038000 - Memory access at key __PlanningCount
+.050000 - [cognitive] Initializing Plan module 1 JSHOPPlanner...done.
+
+.065000 - [cognitive] Initializing Act module 1 SimpleAct...done.
+
+.080000 - Memory access at key __goals
+.091000 - Goal Graph initialized.
+
+.105000 - To use goal ordering, call initGoalGraph manually with a custom goal comparator
+
+.118000 - 
+MIDCA is starting. Please enter commands, or '?' + enter for help. Pressing enter with no input will advance the simulation by one phase.
+
+3.171000 - Starting cycle 0
+
+3.188000 - ****** Starting Simulate Phase ******
+
+3.204000 - Simulator: no actions selected yet by MIDCA.
+
+3.993000 - ****** Starting Perceive Phase ******
+
+4.007000 - Memory access at key __world states
+4.024000 - Memory access at key __world states
+4.026000 - World observed.
+
+5.044000 - ****** Starting Interpret Phase ******
+
+5.059000 - Please input a goal if desired. Otherwise, press enter to continue
+
+42.309000 - Memory access at key __world states
+42.320000 - Goal(fish b, predicate: fish-at) is not a valid goal
+Possible predicates: ['down', 'top', 'fish-at'] 
+Possible arguments ['a', 'b', 'fish1']
+
+42.331000 - Please input a goal if desired. Otherwise, press enter to continue
+
+1:02.582000 - Memory access at key __world states
+1:02.592000 - Goal(fish1 b, predicate: fish-at) is not a valid goal
+Possible predicates: ['down', 'top', 'fish-at'] 
+Possible arguments ['a', 'b', 'fish1']
+
+1:02.596000 - Please input a goal if desired. Otherwise, press enter to continue
+
+2:11.109000 - Memory access at key __world states
+2:11.123000 - Memory access at key __goals
+2:11.136000 - Goal added.
+
+2:11.139000 - Please input a goal if desired. Otherwise, press enter to continue
+
+2:12.601000 - ****** Starting Eval Phase ******
+
+2:12.665000 - Memory access at key __world states
+2:12.684000 - No current goals. Skipping eval
+
+2:13.673000 - ****** Starting Intend Phase ******
+
+2:13.690000 - Memory access at key __goals
+2:13.702000 - Memory access at key __current goals
+2:13.702000 - Selecting goal(s): Goal(fish1, b, predicate: fish-at)
+
+2:15.601000 - ****** Starting Plan Phase ******
+
+2:15.622000 - Memory access at key __world states
+2:15.638000 - Memory access at key __current goals
+2:15.659000 - Memory access at key __goals
+2:15.665000 - Planning...
+
+2:15.702000 - Memory access at key __PlanningCount
+2:15.702000 - Memory access at key __PlanningCount
+2:15.828000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceDomain.shp
+
+2:15.837000 - Domain file parsed successfully
+
+2:15.850000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceProblem.shp
+
+2:15.860000 - ListLogicalAtoms expecting (: ) expected
+
+2:15.871000 - Error in parsing file
+
+2:15.895000 - Planning failed for  Goal(fish1, b, predicate: fish-at)  
+

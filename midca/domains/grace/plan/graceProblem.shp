@@ -1,0 +1,9 @@
+
+(defproblem problem fish-diving ((loc)
+
+(top a b)
+(fish-at fish1 a)
+)
+ ((achieve-goals (list
+(fish-at fish1 b)
+ ))))

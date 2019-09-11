@@ -1,0 +1,73 @@
+ - [cognitive] Initializing Simulate module 1 MidcaActionSimulator...done.
+
+.010000 - [cognitive] Initializing Perceive module 1 PerfectObserver...done.
+
+.012000 - [cognitive] Initializing Interpret module 1 UserGoalInput...done.
+
+.019000 - [cognitive] Initializing Eval module 1 SimpleEval...done.
+
+.035000 - [cognitive] Initializing Intend module 1 SimpleIntend...done.
+
+.047000 - Memory access at key __PlanningCount
+.058000 - [cognitive] Initializing Plan module 1 JSHOPPlanner...done.
+
+.064000 - [cognitive] Initializing Act module 1 SimpleAct...done.
+
+.078000 - Memory access at key __goals
+.094000 - Goal Graph initialized.
+
+.107000 - To use goal ordering, call initGoalGraph manually with a custom goal comparator
+
+.163000 - 
+MIDCA is starting. Please enter commands, or '?' + enter for help. Pressing enter with no input will advance the simulation by one phase.
+
+9.369000 - Starting cycle 0
+
+9.386000 - ****** Starting Simulate Phase ******
+
+9.408000 - Simulator: no actions selected yet by MIDCA.
+
+10.921000 - ****** Starting Perceive Phase ******
+
+10.937000 - Memory access at key __world states
+10.945000 - Memory access at key __world states
+10.961000 - World observed.
+
+15.452000 - No display function set. See PhaseManager.set_display_function()
+
+24.045000 - ****** Starting Interpret Phase ******
+
+24.053000 - Please input a goal if desired. Otherwise, press enter to continue
+
+42.967000 - Memory access at key __world states
+42.980000 - Memory access at key __goals
+42.993000 - Goal added.
+
+43.013000 - Please input a goal if desired. Otherwise, press enter to continue
+
+44.169000 - ****** Starting Eval Phase ******
+
+44.190000 - Memory access at key __world states
+44.210000 - No current goals. Skipping eval
+
+45.104000 - ****** Starting Intend Phase ******
+
+45.181000 - Memory access at key __goals
+45.202000 - Memory access at key __current goals
+45.218000 - Selecting goal(s): Goal(fish1, b, predicate: fish-at)
+
+46.401000 - ****** Starting Plan Phase ******
+
+46.423000 - Memory access at key __world states
+46.435000 - Memory access at key __current goals
+46.458000 - Memory access at key __goals
+46.474000 - Planning...
+
+46.495000 - Memory access at key __PlanningCount
+46.497000 - Memory access at key __PlanningCount
+46.707000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceDomain
+
+46.727000 - Error in readFile() : java.io.FileNotFoundException: C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples\..\domains\grace\plan\graceDomain (The system cannot find the file specified)
+
+46.738000 - Planning failed for  Goal(fish1, b, predicate: fish-at)  
+

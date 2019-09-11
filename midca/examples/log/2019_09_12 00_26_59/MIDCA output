@@ -1,0 +1,163 @@
+.008000 - [cognitive] Initializing Simulate module 1 MidcaActionSimulator...done.
+
+.016000 - [cognitive] Initializing Perceive module 1 PerfectObserver...done.
+
+.023000 - [cognitive] Initializing Interpret module 1 UserGoalInput...done.
+
+.031000 - [cognitive] Initializing Eval module 1 SimpleEval...done.
+
+.037000 - [cognitive] Initializing Intend module 1 SimpleIntend...done.
+
+.057000 - [cognitive] Initializing Plan module 1 JSHOPPlanner...done.
+
+.068000 - [cognitive] Initializing Act module 1 SimpleAct...done.
+
+.086000 - Goal Graph initialized.
+
+.103000 - To use goal ordering, call initGoalGraph manually with a custom goal comparator
+
+.164000 - 
+MIDCA is starting. Please enter commands, or '?' + enter for help. Pressing enter with no input will advance the simulation by one phase.
+
+1.973000 - Starting cycle 0
+
+1.977000 - ****** Starting Simulate Phase ******
+
+2.010000 - Simulator: no actions selected yet by MIDCA.
+
+2.685000 - ****** Starting Perceive Phase ******
+
+2.719000 - World observed.
+
+3.313000 - ****** Starting Interpret Phase ******
+
+3.321000 - Please input a goal if desired. Otherwise, press enter to continue
+
+25.449000 - Goal added.
+
+25.472000 - Please input a goal if desired. Otherwise, press enter to continue
+
+26.443000 - ****** Starting Eval Phase ******
+
+26.476000 - No current goals. Skipping eval
+
+27.480000 - ****** Starting Intend Phase ******
+
+27.557000 - Selecting goal(s): Goal(fish1, b, predicate: fish-at)
+
+28.941000 - ****** Starting Plan Phase ******
+
+29.005000 - Planning...
+
+29.245000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceDomain.shp
+
+29.278000 - Domain file parsed successfully
+
+29.316000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceProblem.shp
+
+29.346000 - Problem file parsed successfully
+
+29.369000 - Solving Problem :problem
+
+29.390000 - _______
+
+29.406000 - start
+
+29.421000 - depth: 0
+
+29.433000 - (achieve-goals (list (fish-at fish1 b ) )  ) _______
+
+29.450000 - start
+
+29.461000 - depth: 1
+
+29.492000 - (achieve-goal (fish-at fish1 b ) ) _______
+
+29.507000 - start
+
+29.522000 - depth: 2
+
+29.534000 - (!move-fish-down fish1 a b  ) Creating monitor_fish-at
+
+29.547000 - Creating monitor_top
+
+29.559000 - Starting monitor_fish-at
+
+29.571000 - RUNNING!
+
+29.584000 - Starting monitor_top
+
+29.595000 - RUNNING!
+
+29.601000 - Running monitor_fish-at
+
+29.624000 - Running monitor_top
+
+29.641000 - _______
+
+29.660000 - start
+
+29.677000 - depth: 3
+
+29.679000 - (achieve-goals list nil  ) _______
+
+29.708000 - start
+
+29.719000 - depth: 4
+
+29.736000 - 2
+
+29.750000 - result: 
+
+29.762000 - 5
+
+29.772000 - 1 plans found.
+
+29.786000 - ********* PLANS *******
+
+29.802000 - Plan # 1
+
+29.815000 -  ( (!move-fish-down fish1 a b  )  1.0  ) 
+
+29.844000 - move-fish-down fish1 a b  
+
+29.863000 - Planning complete.
+
+29.880000 - Plan: 
+
+29.900000 -   move-fish-down(fish1, a, b)
+
+34.676000 - ****** Starting Act Phase ******
+
+34.750000 - Selected action move-fish-down(fish1, a, b) from plan:
+
+34.761000 - [move-fish-down(fish1, a, b)]
+
+37.251000 - Starting cycle 1
+
+37.276000 - ****** Starting Simulate Phase ******
+
+37.308000 - simulating MIDCA action: move-fish-down(fish1, a, b)
+
+39.993000 - ****** Starting Perceive Phase ******
+
+40.046000 - World observed.
+
+41.679000 - ****** Starting Interpret Phase ******
+
+41.693000 - Please input a goal if desired. Otherwise, press enter to continue
+
+44.135000 - ****** Starting Eval Phase ******
+
+44.189000 - All current goals achieved. Removing them from goal graph
+
+44.226000 - removing 1 plans that no longer apply.
+
+45.952000 - ****** Starting Intend Phase ******
+
+45.977000 - No Goals in Goal graph. Intend will do nothing.
+
+46.970000 - ****** Starting Plan Phase ******
+
+47.031000 - No goals received by planner. Skipping planning.
+

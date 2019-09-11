@@ -1,6 +1,3 @@
-
-
-from midca.modules._robot_world import world_repr
 from midca import midcatime
 import math
 import numpy as np

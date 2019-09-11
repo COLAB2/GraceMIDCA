@@ -1,0 +1,28 @@
+.122000 - Memory access at key __PlanningCount
+.163000 - Memory access at key __goals
+6.480000 - Starting cycle 0
+
+6.495000 - ****** Starting Simulate Phase ******
+
+6.535000 - ****** Starting Perceive Phase ******
+
+6.561000 - Memory access at key __world states
+6.576000 - Memory access at key __world states
+7.965000 - ****** Starting Interpret Phase ******
+
+17.866000 - Memory access at key __world states
+17.871000 - Memory access at key __goals
+18.740000 - ****** Starting Eval Phase ******
+
+18.758000 - Memory access at key __world states
+20.118000 - ****** Starting Intend Phase ******
+
+20.129000 - Memory access at key __goals
+20.145000 - Memory access at key __current goals
+21.463000 - ****** Starting Plan Phase ******
+
+21.474000 - Memory access at key __world states
+21.481000 - Memory access at key __current goals
+21.507000 - Memory access at key __goals
+21.542000 - Memory access at key __PlanningCount
+21.556000 - Memory access at key __PlanningCount

@@ -58,7 +58,7 @@ if __name__ == "__main__":
     thisDir =  os.path.dirname(os.path.realpath(__file__))
 #     thisDir = "C:/Users/Zohreh/git/midca/modules/_plan/jShop/"
     MIDCA_ROOT = thisDir + "/../../../"
-    DOMAIN_FIILE = MIDCA_ROOT + "domains/jshop_domains/grace/graceDomain.shp"
+    DOMAIN_FIILE = MIDCA_ROOT + "domains/grace/plan/graceDomain.shp"
 #     #DOMAIN_FIILE = JSHOP_ROOT + "domains/jshop_domains/blocks_world/blocksworld.shp"
-    STATE_FILE = MIDCA_ROOT + "domains/jshop_domains/grace/graceProblem.shp"
+    STATE_FILE = MIDCA_ROOT + "domains/grace/plan/graceProblem.shp"
     jshop("tasks", DOMAIN_FIILE, STATE_FILE)

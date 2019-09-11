@@ -1,6 +1,5 @@
 import sys, random
 from midca import worldsim, goals, base
-from midca.domains.nbeacons import nbeacons_util
 import copy 
 
 class MidcaActionSimulator:

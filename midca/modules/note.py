@@ -1,6 +1,4 @@
 import copy
-from midca.modules._adist import ADistance, ChangeFinder, WindowPair, Interval
-from midca.domains.nbeacons import nbeacons_util
 import sys
 '''
 See class ADistanceAnomalyNoter

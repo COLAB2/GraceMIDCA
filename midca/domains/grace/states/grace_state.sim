@@ -1,0 +1,6 @@
+fish(fish1)
+location(a)
+location(b)
+
+fish-at(fish1, a)
+top(a, b)

@@ -1,0 +1,305 @@
+.006000 - [cognitive] Initializing Simulate module 1 ASCIIWorldViewer...done.
+
+.016000 - [cognitive] Initializing Perceive module 1 PerfectObserver...done.
+
+.023000 - [cognitive] Initializing Interpret module 1 UserGoalInput...done.
+
+.030000 - [cognitive] Initializing Eval module 1 SimpleEval...done.
+
+.038000 - [cognitive] Initializing Intend module 1 SimpleIntend...done.
+
+.048000 - Memory access at key __PlanningCount
+.066000 - [cognitive] Initializing Plan module 1 JSHOPPlanner...done.
+
+.083000 - [cognitive] Initializing Act module 1 SimpleAct...done.
+
+.099000 - Memory access at key __goals
+.113000 - Goal Graph initialized.
+
+.129000 - To use goal ordering, call initGoalGraph manually with a custom goal comparator
+
+.142000 - 
+MIDCA is starting. Please enter commands, or '?' + enter for help. Pressing enter with no input will advance the simulation by one phase.
+
+6.462000 - Starting cycle 0
+
+6.476000 - ****** Starting Simulate Phase ******
+
+6.496000 - [
+a (location) : top(a, b) and fish-at(fish1, a)
+b (location) : top(a, b)
+fish1 (fish) : fish-at(fish1, a)
+]
+
+6.515000 - ****** Starting Perceive Phase ******
+
+6.553000 - Memory access at key __world states
+6.585000 - Memory access at key __world states
+6.601000 - World observed.
+
+12.862000 - ****** Starting Interpret Phase ******
+
+12.880000 - Please input a goal if desired. Otherwise, press enter to continue
+
+32.094000 - Memory access at key __world states
+32.105000 - Memory access at key __goals
+32.105000 - Goal added.
+
+32.128000 - Please input a goal if desired. Otherwise, press enter to continue
+
+32.927000 - ****** Starting Eval Phase ******
+
+32.939000 - Memory access at key __world states
+32.961000 - No current goals. Skipping eval
+
+33.745000 - ****** Starting Intend Phase ******
+
+33.809000 - Memory access at key __goals
+33.833000 - Memory access at key __current goals
+33.859000 - Selecting goal(s): Goal(fish1, b, predicate: fish-at)
+
+34.778000 - ****** Starting Plan Phase ******
+
+34.833000 - Memory access at key __world states
+34.858000 - Memory access at key __current goals
+34.889000 - Memory access at key __goals
+34.912000 - Planning...
+
+34.977000 - Memory access at key __PlanningCount
+35.003000 - Memory access at key __PlanningCount
+35.385000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceDomain.shp
+
+35.399000 - Domain file parsed successfully
+
+35.411000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceProblem.shp
+
+35.428000 - Problem file parsed successfully
+
+35.459000 - Solving Problem :problem
+
+35.487000 - _______
+
+35.520000 - start
+
+35.553000 - depth: 0
+
+35.580000 - (achieve-goals (list (fish-at fish1 b ) )  ) _______
+
+35.600000 - start
+
+35.641000 - depth: 1
+
+35.675000 - (achieve-goal (fish-at fish1 b ) ) _______
+
+35.703000 - start
+
+35.738000 - depth: 2
+
+35.761000 - (!move-fish-down fish1 a b  ) Creating monitor_fish-at
+
+35.785000 - Creating monitor_top
+
+35.797000 - Starting monitor_fish-at
+
+35.813000 - RUNNING!
+
+35.821000 - Starting monitor_top
+
+35.833000 - RUNNING!
+
+35.833000 - Running monitor_fish-at
+
+35.854000 - Running monitor_top
+
+35.872000 - _______
+
+35.885000 - start
+
+35.903000 - depth: 3
+
+35.921000 - (achieve-goals list nil  ) _______
+
+35.938000 - start
+
+35.955000 - depth: 4
+
+35.967000 - 2
+
+35.984000 - result: 
+
+35.998000 - 5
+
+36.013000 - 1 plans found.
+
+36.029000 - ********* PLANS *******
+
+36.047000 - Plan # 1
+
+36.063000 -  ( (!move-fish-down fish1 a b  )  1.0  ) 
+
+36.079000 - move-fish-down fish1 a b  
+
+36.100000 - Planning complete.
+
+36.119000 - Plan: 
+
+36.140000 -   move-fish-down(fish1, a, b)
+
+36.157000 - Memory access at key __goals
+44.131000 - ****** Starting Act Phase ******
+
+44.148000 - Memory access at key __world states
+44.166000 - Memory access at key __current goals
+44.181000 - Memory access at key __goals
+44.213000 - Selected action move-fish-down(fish1, a, b) from plan:
+
+44.244000 - [move-fish-down(fish1, a, b)]
+
+44.263000 - Memory access at key __actions
+44.299000 - Memory access at key __actions
+46.089000 - Starting cycle 1
+
+46.109000 - ****** Starting Simulate Phase ******
+
+46.146000 - [
+a (location) : top(a, b) and fish-at(fish1, a)
+b (location) : top(a, b)
+fish1 (fish) : fish-at(fish1, a)
+]
+
+53.711000 - ****** Starting Perceive Phase ******
+
+53.719000 - Memory access at key __world states
+53.756000 - Memory access at key __world states
+53.792000 - World observed.
+
+55.376000 - ****** Starting Interpret Phase ******
+
+55.387000 - Please input a goal if desired. Otherwise, press enter to continue
+
+57.685000 - ****** Starting Eval Phase ******
+
+57.694000 - Memory access at key __world states
+57.714000 - Memory access at key __current goals
+57.742000 - Not all goals achieved; Goal(fish1, b, predicate: fish-at) is not true.
+
+1:02.030000 - ****** Starting Intend Phase ******
+
+1:02.062000 - Memory access at key __goals
+1:02.094000 - Memory access at key __current goals
+1:02.122000 - Memory access at key __current goals
+1:02.153000 - No goals selected.
+
+1:03.768000 - ****** Starting Plan Phase ******
+
+1:03.791000 - Memory access at key __world states
+1:03.797000 - Memory access at key __current goals
+1:03.815000 - Memory access at key __goals
+1:03.839000 - Old plan retrieved. Checking validity... valid.
+
+1:03.866000 - checking to see if all goals are achieved... no. Goals achieved: set([])
+
+1:03.880000 - Planning...
+
+1:03.926000 - Memory access at key __PlanningCount
+1:03.949000 - Memory access at key __PlanningCount
+1:04.330000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceDomain.shp
+
+1:04.356000 - Domain file parsed successfully
+
+1:04.372000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceProblem.shp
+
+1:04.390000 - Problem file parsed successfully
+
+1:04.407000 - Solving Problem :problem
+
+1:04.431000 - _______
+
+1:04.458000 - start
+
+1:04.483000 - depth: 0
+
+1:04.506000 - (achieve-goals (list (fish-at fish1 b ) )  ) _______
+
+1:04.527000 - start
+
+1:04.545000 - depth: 1
+
+1:04.569000 - (achieve-goal (fish-at fish1 b ) ) _______
+
+1:04.579000 - start
+
+1:04.603000 - depth: 2
+
+1:04.635000 - (!move-fish-down fish1 a b  ) Creating monitor_fish-at
+
+1:04.663000 - Creating monitor_top
+
+1:04.678000 - Starting monitor_fish-at
+
+1:04.699000 - RUNNING!
+
+1:04.712000 - Starting monitor_top
+
+1:04.735000 - Running monitor_fish-at
+
+1:04.756000 - RUNNING!
+
+1:04.774000 - Running monitor_top
+
+1:04.795000 - _______
+
+1:04.817000 - start
+
+1:04.837000 - depth: 3
+
+1:04.862000 - (achieve-goals list nil  ) _______
+
+1:04.880000 - start
+
+1:04.901000 - depth: 4
+
+1:04.928000 - 2
+
+1:04.947000 - result: 
+
+1:04.968000 - 5
+
+1:04.988000 - 1 plans found.
+
+1:05.004000 - ********* PLANS *******
+
+1:05.029000 - Plan # 1
+
+1:05.048000 -  ( (!move-fish-down fish1 a b  )  1.0  ) 
+
+1:05.068000 - move-fish-down fish1 a b  
+
+1:05.088000 - Planning complete.
+
+1:05.109000 - Plan: 
+
+1:05.131000 -   move-fish-down(fish1, a, b)
+
+1:05.147000 - Memory access at key __goals
+1:07.582000 - ****** Starting Act Phase ******
+
+1:07.603000 - Memory access at key __world states
+1:07.616000 - Memory access at key __current goals
+1:07.649000 - Memory access at key __goals
+1:07.684000 - Selected action move-fish-down(fish1, a, b) from plan:
+
+1:07.716000 - [move-fish-down(fish1, a, b)]
+
+1:07.749000 - Memory access at key __actions
+1:07.779000 - Memory access at key __actions
+1:13.852000 - Starting cycle 2
+
+1:13.861000 - ****** Starting Simulate Phase ******
+
+1:13.918000 - [
+a (location) : top(a, b) and fish-at(fish1, a)
+b (location) : top(a, b)
+fish1 (fish) : fish-at(fish1, a)
+]
+

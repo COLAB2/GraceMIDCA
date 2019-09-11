@@ -1,7 +1,6 @@
 from midca import rosrun, plans
 from midca import midcatime
 import traceback
-from midca.examples.homography import *
 import math
 import copy
 import numpy as np

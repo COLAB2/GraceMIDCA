@@ -1,9 +1,7 @@
-from midca.modules._robot_world import world_repr
 from midca.worldsim import domainread, stateread
 from midca import rosrun, midcatime, base
 import copy
 import os
-import zmq
 import socket
 
 try:
@@ -41,7 +39,7 @@ class ROSObserver:
 		history.reverse()
 		return history
 	return None
-	
+
 
 
 
@@ -97,7 +95,7 @@ class ROSObserver:
 	if history:
 		if len(history) > 5:
 			history = history[:5]
-		self.mem.set(self.mem.STATE_HISTORY , history)		
+		self.mem.set(self.mem.STATE_HISTORY , history)
         self.mem.unlock(self.mem.STATE)
 
 
@@ -189,7 +187,7 @@ class MoosObserver(base.BaseModule):
 
         '''
         The following code gets the current X,Y,Speed and updates the location of uuv.
-        i.e., if the vehicle is in qroute or green area 1 or green area 2. 
+        i.e., if the vehicle is in qroute or green area 1 or green area 2.
         the else part is to remove the state after the vehicle leaves the specific location
         '''
 
@@ -274,27 +272,19 @@ class PerfectObserverWithThief(base.BaseModule):
     #perfect observation
     def observe(self):
         return self.world.copy()
-	
+
     def run(self, cycle, verbose = 2):
         world = self.observe()
         thisDir = os.path.dirname(os.path.realpath(__file__))
         thief_file = thisDir + "/theif.txt"
         theft_items=[]
-<<<<<<< HEAD
-
+		
         with open(thief_file) as f:
 	    	lines = f.readlines()
 	    	for line in lines:
 	    		theft_items.append(line.split(" "))
 
-=======
-        
-#         with open(thief_file) as f:
-# 	    	lines = f.readlines()
-# 	    	for line in lines:
-# 	    		theft_items.append(line.split(" "))
-# 	    	
->>>>>>> 0c83c81ec243c2c784d834e3d17762aa3a5ab8f9
+
         if not world:
             raise Exception("World observation failed.")
 
@@ -304,7 +294,7 @@ class PerfectObserverWithThief(base.BaseModule):
 
 			for atom in world.atoms:
 				if atom.predicate.name == item[0] and atom.args[0].name == item[1]:
-					world.atoms.remove(atom)   
+					world.atoms.remove(atom)
 					print("removed:" + atom.args[0].name)
 					break
 
@@ -471,7 +461,7 @@ class MAReporter(base.BaseModule):
                 if block not in lastBurning or block in blocksPutOut:
                     report.actions.append(["burns", block])
         #report is finished, send to Meta-AQUA
-		#report contains actions and state, 
+		#report contains actions and state,
 		#for every action there will be the state attached to it
         if verbose >= 1:
             print "Sending report to Meta-AQUA",

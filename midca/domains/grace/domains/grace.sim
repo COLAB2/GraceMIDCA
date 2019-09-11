@@ -1,0 +1,24 @@
+type(fish)
+type(location)
+
+predicate(fish-at, [f, loc], [fish, location])
+predicate(top, [loc-from, loc-to], [location, location])
+predicate(down, [loc-from, loc-to], [location, location])
+
+operator(move-fish-down,
+args = [(f, fish), (loc-from, location), (loc-to, location)],
+preconditions = [
+	condition(fish-at, [f, loc-from]),
+	condition(top, [loc-from, loc-to])],
+results = [
+  condition(fish-at, [f, loc-to]),
+  condition(fish-at, [f, loc-from], negate = True)])
+
+operator(move-fish-up,
+args = [(f, fish), (loc-from, location), (loc-to, location)],
+preconditions = [
+	condition(fish-at, [f, loc-from]),
+	condition(down, [loc-from, loc-to])],
+results = [
+  condition(fish-at, [f, loc-to]),
+  condition(fish-at, [f, loc-from], negate = True)])

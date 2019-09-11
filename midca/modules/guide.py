@@ -1,8 +1,5 @@
 from midca import goals, base
 from midca import midcatime
-from _goalgen import tf_3_scen, tf_fire
-from midca.domains.logistics import deliverstate
-from midca.domains.blocksworld import blockstate
 from midca.worldsim import stateread
 import copy,csv
 import random
