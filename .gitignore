@@ -35,6 +35,8 @@ nosetests.xml
 *~
 
 #ignore MIDCA log files
+**/logs
+**/log
 log/**
 _log/**
 examples/log/**
