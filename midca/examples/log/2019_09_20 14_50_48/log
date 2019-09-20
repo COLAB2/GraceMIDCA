@@ -1,0 +1,298 @@
+.011000 - [cognitive] Initializing Simulate module 1 MidcaActionSimulator...done.
+
+.022000 - [cognitive] Initializing Perceive module 1 PerfectObserver...done.
+
+.031000 - [cognitive] Initializing Interpret module 1 UserGoalInput...done.
+
+.041000 - [cognitive] Initializing Eval module 1 SimpleEval...done.
+
+.050000 - [cognitive] Initializing Intend module 1 SimpleIntend...done.
+
+.061000 - Memory access at key __PlanningCount
+.074000 - [cognitive] Initializing Plan module 1 JSHOPPlanner...done.
+
+.089000 - [cognitive] Initializing Act module 1 SimpleAct...done.
+
+.102000 - Memory access at key __goals
+.115000 - Goal Graph initialized.
+
+.129000 - To use goal ordering, call initGoalGraph manually with a custom goal comparator
+
+.144000 - 
+MIDCA is starting. Please enter commands, or '?' + enter for help. Pressing enter with no input will advance the simulation by one phase.
+
+1.812000 - Starting cycle 0
+
+1.836000 - ****** Starting Simulate Phase ******
+
+1.858000 - Simulator: no actions selected yet by MIDCA.
+
+2.543000 - ****** Starting Perceive Phase ******
+
+2.561000 - Memory access at key __world states
+2.569000 - Memory access at key __world states
+2.584000 - World observed.
+
+3.206000 - ****** Starting Interpret Phase ******
+
+3.223000 - Please input a goal if desired. Otherwise, press enter to continue
+
+15.148000 - Memory access at key __world states
+15.150000 - Memory access at key __goals
+15.170000 - Goal added.
+
+15.183000 - Please input a goal if desired. Otherwise, press enter to continue
+
+16.262000 - ****** Starting Eval Phase ******
+
+16.281000 - Memory access at key __world states
+16.296000 - No current goals. Skipping eval
+
+16.911000 - ****** Starting Intend Phase ******
+
+16.979000 - Memory access at key __goals
+16.983000 - Memory access at key __current goals
+17 - Selecting goal(s): Goal(fumin, pool_depth, predicate: knows)
+
+17.862000 - ****** Starting Plan Phase ******
+
+17.879000 - Memory access at key __world states
+17.892000 - Memory access at key __current goals
+17.906000 - Memory access at key __goals
+17.920000 - Planning...
+
+17.936000 - Memory access at key __PlanningCount
+17.951000 - Memory access at key __PlanningCount
+18.532000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceDomain.shp
+
+18.559000 - JSUtil>>stringTokenizer is returning %%%
+
+18.632000 - JSUtil>>stringTokenizer is returning %%%
+
+18.659000 - JSUtil>>stringTokenizer is returning %%%
+
+18.680000 - JSUtil>>stringTokenizer is returning %%%
+
+18.696000 - JSUtil>>stringTokenizer is returning %%%
+
+18.712000 - JSUtil>>stringTokenizer is returning %%%
+
+18.730000 - JSUtil>>stringTokenizer is returning %%%
+
+18.747000 - JSUtil>>stringTokenizer is returning %%%
+
+18.764000 - JSUtil>>stringTokenizer is returning %%%
+
+18.781000 - JSUtil>>stringTokenizer is returning %%%
+
+18.801000 - JSUtil>>stringTokenizer is returning %%%
+
+18.819000 - JSUtil>>stringTokenizer is returning %%%
+
+18.838000 - JSUtil>>stringTokenizer is returning %%%
+
+18.856000 - JSUtil>>stringTokenizer is returning %%%
+
+18.874000 - JSUtil>>stringTokenizer is returning %%%
+
+18.893000 - JSUtil>>stringTokenizer is returning %%%
+
+18.912000 - JSUtil>>stringTokenizer is returning %%%
+
+18.932000 - JSUtil>>stringTokenizer is returning %%%
+
+18.952000 - JSUtil>>stringTokenizer is returning %%%
+
+18.972000 - JSUtil>>stringTokenizer is returning %%%
+
+18.992000 - JSUtil>>stringTokenizer is returning %%%
+
+19.011000 - JSUtil>>stringTokenizer is returning %%%
+
+19.028000 - JSUtil>>stringTokenizer is returning %%%
+
+19.045000 - JSUtil>>stringTokenizer is returning %%%
+
+19.062000 - Domain file parsed successfully
+
+19.085000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceProblem.shp
+
+19.104000 - JSUtil>>stringTokenizer is returning %%%
+
+19.124000 - JSUtil>>stringTokenizer is returning %%%
+
+19.143000 - Problem file parsed successfully
+
+19.163000 - Solving Problem :problem
+
+19.185000 - _______
+
+19.204000 - start
+
+19.224000 - depth: 0
+
+19.244000 - (achieve-goals (list (knows fumin pooldepth ) )  ) _______
+
+19.264000 - start
+
+19.287000 - depth: 1
+
+19.306000 - (achieve-goal (knows fumin pooldepth ) ) _______
+
+19.326000 - start
+
+19.345000 - depth: 2
+
+19.365000 - (!dive grace pooldepth  ) Creating monitor_not
+
+19.385000 - Creating monitor_not
+
+19.405000 - Starting monitor_not
+
+19.426000 - RUNNING!
+
+19.445000 - Starting monitor_not
+
+19.467000 - RUNNING!
+
+19.488000 - Running monitor_not
+
+19.507000 - Running monitor_not
+
+19.528000 - _______
+
+19.547000 - start
+
+19.570000 - depth: 3
+
+19.590000 - (!sensedepth grace pooldepth  ) Creating monitor_atbottom
+
+19.609000 - Starting monitor_atbottom
+
+19.627000 - RUNNING!
+
+19.646000 - _______
+
+19.670000 - start
+
+19.690000 - Running monitor_atbottom
+
+19.709000 - depth: 4
+
+19.729000 - (!raise grace pooldepth  ) Creating monitor_not
+
+19.751000 - Creating monitor_knows
+
+19.772000 - Starting monitor_not
+
+19.792000 - RUNNING!
+
+19.812000 - Starting monitor_knows
+
+19.836000 - RUNNING!
+
+19.856000 - Running monitor_not
+
+19.876000 - _______
+
+19.896000 - start
+
+19.916000 - Running monitor_knows
+
+19.936000 - depth: 5
+
+19.957000 - (!communicatepooldepth grace fumin pooldepth  ) Creating monitor_knows
+
+19.976000 - Creating monitor_atsurface
+
+19.996000 - Starting monitor_knows
+
+20.013000 - RUNNING!
+
+20.035000 - Starting monitor_atsurface
+
+20.055000 - RUNNING!
+
+20.076000 - Running monitor_knows
+
+20.095000 - Running monitor_atsurface
+
+20.118000 - _______
+
+20.138000 - start
+
+20.158000 - depth: 6
+
+20.178000 - (achieve-goals list nil  ) _______
+
+20.199000 - start
+
+20.219000 - depth: 7
+
+20.240000 - 7
+
+20.260000 - result: 
+
+20.280000 - 8
+
+20.304000 - 1 plans found.
+
+20.323000 - ********* PLANS *******
+
+20.343000 - Plan # 1
+
+20.363000 -  ( (!dive grace pooldepth  )  1.0 (!sensedepth grace pooldepth  )  1.0 (!raise grace pooldepth  )  1.0 (!communicatepooldepth grace fumin pooldepth  )  1.0  ) 
+
+20.388000 - dive grace pooldepth  
+
+20.408000 - sensedepth grace pooldepth  
+
+20.428000 - raise grace pooldepth  
+
+20.449000 - communicatepooldepth grace fumin pooldepth  
+
+20.470000 - Planning complete.
+
+20.490000 - Plan: 
+
+20.509000 -   dive(grace, pooldepth)
+
+20.529000 -   sensedepth(grace, pooldepth)
+
+20.554000 -   raise(grace, pooldepth)
+
+20.574000 -   communicatepooldepth(grace, fumin, pooldepth)
+
+20.592000 - Memory access at key __goals
+1:38.838000 - ****** Starting Act Phase ******
+
+1:38.857000 - Memory access at key __world states
+1:38.866000 - Memory access at key __current goals
+1:38.883000 - Memory access at key __goals
+1:38.897000 - Retrieved plan does not achieve all goals. Trying to retrieve a different plan...
+
+1:38.915000 - No valid plan found that achieves any current goals.
+
+1:38.936000 - MIDCA will not select an action this cycle.
+
+1:38.954000 - Memory access at key __actions
+1:38.972000 - Memory access at key __goals
+2:20.517000 - command not understood
+
+2:21.981000 - Starting cycle 1
+
+2:22.017000 - ****** Starting Simulate Phase ******
+
+2:22.041000 - Memory access at key __actions
+2:22.056000 - No actions selected this cycle by MIDCA.
+
+2:22.244000 - ****** Starting Perceive Phase ******
+
+2:22.270000 - Memory access at key __world states
+2:22.283000 - Memory access at key __world states
+2:22.297000 - World observed.
+
+2:22.728000 - ****** Starting Interpret Phase ******
+
+2:22.751000 - Please input a goal if desired. Otherwise, press enter to continue
+

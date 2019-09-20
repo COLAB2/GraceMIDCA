@@ -6,7 +6,7 @@ predicate(knows, [fumin, pool_depth], [agent, depth_value])
 predicate(at_bottom, [grace], [agent])
 predicate(at_surface, [grace], [agent])
 
-operator(communicate_pool_depth,
+operator(communicatepooldepth,
 args = [(grace, agent), (fumin, agent), (pool_depth, depth_value)],
 preconditions = [
 	condition(knows, [grace, pool_depth]),
@@ -22,7 +22,7 @@ preconditions = [
 results = [
   condition(at_surface, [grace])])
 
-operator(sense_depth,
+operator(sensedepth,
 args = [(grace, agent), (pool_depth, depth_value)],
 preconditions = [
 	condition(at_bottom, [grace])],

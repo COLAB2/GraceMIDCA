@@ -1,0 +1,265 @@
+.003000 - [cognitive] Initializing Simulate module 1 MidcaActionSimulator...done.
+
+.010000 - [cognitive] Initializing Perceive module 1 PerfectObserver...done.
+
+.019000 - [cognitive] Initializing Interpret module 1 UserGoalInput...done.
+
+.028000 - [cognitive] Initializing Eval module 1 SimpleEval...done.
+
+.038000 - [cognitive] Initializing Intend module 1 SimpleIntend...done.
+
+.074000 - [cognitive] Initializing Plan module 1 JSHOPPlanner...done.
+
+.088000 - [cognitive] Initializing Act module 1 SimpleAct...done.
+
+.116000 - Goal Graph initialized.
+
+.132000 - To use goal ordering, call initGoalGraph manually with a custom goal comparator
+
+.151000 - 
+MIDCA is starting. Please enter commands, or '?' + enter for help. Pressing enter with no input will advance the simulation by one phase.
+
+1.166000 - Starting cycle 0
+
+1.195000 - ****** Starting Simulate Phase ******
+
+1.212000 - Simulator: no actions selected yet by MIDCA.
+
+1.884000 - ****** Starting Perceive Phase ******
+
+1.933000 - World observed.
+
+2.411000 - ****** Starting Interpret Phase ******
+
+2.431000 - Please input a goal if desired. Otherwise, press enter to continue
+
+11.890000 - Goal added.
+
+11.905000 - Please input a goal if desired. Otherwise, press enter to continue
+
+12.603000 - ****** Starting Eval Phase ******
+
+12.638000 - No current goals. Skipping eval
+
+13.084000 - ****** Starting Intend Phase ******
+
+13.216000 - Selecting goal(s): Goal(fumin, pool_depth, predicate: knows)
+
+13.702000 - ****** Starting Plan Phase ******
+
+13.771000 - Planning...
+
+14.025000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceDomain.shp
+
+14.055000 - JSUtil>>stringTokenizer is returning %%%
+
+14.090000 - JSUtil>>stringTokenizer is returning %%%
+
+14.121000 - JSUtil>>stringTokenizer is returning %%%
+
+14.160000 - JSUtil>>stringTokenizer is returning %%%
+
+14.193000 - JSUtil>>stringTokenizer is returning %%%
+
+14.215000 - JSUtil>>stringTokenizer is returning %%%
+
+14.234000 - JSUtil>>stringTokenizer is returning %%%
+
+14.256000 - JSUtil>>stringTokenizer is returning %%%
+
+14.278000 - JSUtil>>stringTokenizer is returning %%%
+
+14.298000 - JSUtil>>stringTokenizer is returning %%%
+
+14.314000 - JSUtil>>stringTokenizer is returning %%%
+
+14.336000 - JSUtil>>stringTokenizer is returning %%%
+
+14.356000 - JSUtil>>stringTokenizer is returning %%%
+
+14.376000 - JSUtil>>stringTokenizer is returning %%%
+
+14.397000 - JSUtil>>stringTokenizer is returning %%%
+
+14.420000 - JSUtil>>stringTokenizer is returning %%%
+
+14.436000 - JSUtil>>stringTokenizer is returning %%%
+
+14.451000 - JSUtil>>stringTokenizer is returning %%%
+
+14.475000 - JSUtil>>stringTokenizer is returning %%%
+
+14.502000 - JSUtil>>stringTokenizer is returning %%%
+
+14.525000 - JSUtil>>stringTokenizer is returning %%%
+
+14.548000 - JSUtil>>stringTokenizer is returning %%%
+
+14.567000 - JSUtil>>stringTokenizer is returning %%%
+
+14.583000 - JSUtil>>stringTokenizer is returning %%%
+
+14.602000 - Domain file parsed successfully
+
+14.618000 - Reading file C:\Users\sampa\Documents\git\GraceMIDCA\midca\examples/../domains/grace/plan/graceProblem.shp
+
+14.638000 - JSUtil>>stringTokenizer is returning %%%
+
+14.658000 - JSUtil>>stringTokenizer is returning %%%
+
+14.684000 - Problem file parsed successfully
+
+14.704000 - Solving Problem :problem
+
+14.728000 - _______
+
+14.746000 - start
+
+14.764000 - depth: 0
+
+14.785000 - (achieve-goals (list (knows fumin pooldepth ) )  ) _______
+
+14.807000 - start
+
+14.828000 - depth: 1
+
+14.848000 - (achieve-goal (knows fumin pooldepth ) ) _______
+
+14.875000 - start
+
+14.894000 - depth: 2
+
+14.912000 - (!dive grace pooldepth  ) Creating monitor_not
+
+14.936000 - Creating monitor_not
+
+14.953000 - Starting monitor_not
+
+14.968000 - RUNNING!
+
+14.984000 - Starting monitor_not
+
+15.008000 - RUNNING!
+
+15.030000 - Running monitor_not
+
+15.057000 - Running monitor_not
+
+15.086000 - _______
+
+15.108000 - start
+
+15.132000 - depth: 3
+
+15.153000 - (!sensedepth grace pooldepth  ) Creating monitor_atbottom
+
+15.174000 - Starting monitor_atbottom
+
+15.197000 - RUNNING!
+
+15.217000 - _______
+
+15.234000 - start
+
+15.257000 - depth: 4
+
+15.281000 - Running monitor_atbottom
+
+15.303000 - (!raise grace pooldepth  ) Creating monitor_not
+
+15.323000 - Creating monitor_knows
+
+15.339000 - Starting monitor_not
+
+15.353000 - RUNNING!
+
+15.374000 - Starting monitor_knows
+
+15.395000 - RUNNING!
+
+15.410000 - Running monitor_not
+
+15.428000 - Running monitor_knows
+
+15.454000 - _______
+
+15.473000 - start
+
+15.499000 - depth: 5
+
+15.519000 - (!communicatepooldepth grace fumin pooldepth  ) Creating monitor_knows
+
+15.541000 - Creating monitor_atsurface
+
+15.560000 - Starting monitor_knows
+
+15.580000 - RUNNING!
+
+15.603000 - Starting monitor_atsurface
+
+15.629000 - RUNNING!
+
+15.645000 - Running monitor_knows
+
+15.662000 - Running monitor_atsurface
+
+15.679000 - _______
+
+15.703000 - start
+
+15.723000 - depth: 6
+
+15.743000 - (achieve-goals list nil  ) _______
+
+15.763000 - start
+
+15.776000 - depth: 7
+
+15.793000 - 7
+
+15.806000 - result: 
+
+15.824000 - 8
+
+15.846000 - 1 plans found.
+
+15.871000 - ********* PLANS *******
+
+15.893000 - Plan # 1
+
+15.914000 -  ( (!dive grace pooldepth  )  1.0 (!sensedepth grace pooldepth  )  1.0 (!raise grace pooldepth  )  1.0 (!communicatepooldepth grace fumin pooldepth  )  1.0  ) 
+
+15.939000 - dive grace pooldepth  
+
+15.962000 - sensedepth grace pooldepth  
+
+15.982000 - raise grace pooldepth  
+
+16.003000 - communicatepooldepth grace fumin pooldepth  
+
+16.023000 - Planning complete.
+
+16.046000 - Plan: 
+
+16.069000 -   dive(grace, pooldepth)
+
+16.088000 -   sensedepth(grace, pooldepth)
+
+16.109000 -   raise(grace, pooldepth)
+
+16.128000 -   communicatepooldepth(grace, fumin, pooldepth)
+
+24.475000 - ****** Starting Act Phase ******
+
+24.554000 - Retrieved plan does not achieve all goals. Trying to retrieve a different plan...
+
+24.574000 - No valid plan found that achieves any current goals.
+
+24.591000 - MIDCA will not select an action this cycle.
+
+38.799000 - Starting cycle 1
+
+38.822000 - ****** Starting Simulate Phase ******
+
+38.861000 - No actions selected this cycle by MIDCA.
+

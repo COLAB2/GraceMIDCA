@@ -48,7 +48,6 @@ def parse(str):
     for elm in elements:
         if(elm[0] == '!' and '(' not in elm):
             elm = elm[1:]
-            print elm
             action_list = elm.strip().split(' ')
             plan.append(action_list)
 
