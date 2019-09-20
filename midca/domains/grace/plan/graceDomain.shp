@@ -1,15 +1,27 @@
 (defdomain grace-fish
   (
 
-    (:operator (!move-fish-down ?fish ?loc-from ?loc-to)
+    (:operator (!communicatePoolDepth ?grace ?fumin ?pool_depth)
                ()
-               ((fish-at ?fish ?loc-from) (top ?loc-from ?loc-to))
-               ((fish-at ?fish ?loc-to)) )
+               ((knows ?grace ?pool_depth) (atSurface ?grace))
+               ((knows ?fumin ?pool_depth)) )
 
-    (:operator (!move-fish-up ?fish ?loc-from ?loc-to)
+    (:operator (!raise ?grace ?pool_depth)
                ()
-               ((fish-at ?fish ?loc-from) (down ?loc-from ?loc-to))
-               ((fish-at ?fish ?loc-to)) )
+               ((not(atSurface ?grace))(knows ?grace ?pool_depth))
+               ((atSurface ?grace)) )
+
+    (:operator (!senseDepth ?grace ?pool_depth)
+               ()
+               ((atBottom ?grace))
+               ((knows ?grace ?pool_depth)) )
+
+    (:operator (!dive ?grace ?pool_depth)
+               ()
+               ((not(atBottom ?grace))(not(knows ?grace ?pool_depth)))
+               ((atBottom ?grace)))
+
+
 
     (:method (achieve-goals (list ?goal . ?goals))
      ()
@@ -24,20 +36,30 @@
             ())
 
 
-   (:method (achieve-goal (fish-at ?fish ?loc-b))
+   (:method (achieve-goal (knows ?fumin ?pool_depth))
 
              ;; If the
-             ((fish-at ?fish ?loc-a)
-              (different ?loc-a ?loc-b) (top ?loc-a ?loc-b) )
-             ((!move-fish-down ?fish ?loc-a ?loc-b))
+             ((atSurface ?grace) (knows ?grace ?pool_depth)
+              (not(atBottom ?grace) ) )
+             ((!communicatePoolDepth ?grace ?fumin ?pool_depth))
 
-             ((fish-at ?fish ?loc-a)
-              (different ?loc-a ?loc-b) (down ?loc-a ?loc-b) )
-             ((!move-fish-up ?fish ?loc-a ?loc-b))
+             ((atSurface ?grace) (not(knows ?grace ?pool_depth))
+              (not(atBottom ?grace)))
+             ((!dive ?grace ?pool_depth)
+              (!senseDepth ?grace ?pool_depth)
+              (!raise ?grace ?pool_depth)
+              (!communicatePoolDepth ?grace ?fumin ?pool_depth))
 
-             ((fish-at ?fish ?loc-a)
-              (same ?loc-a ?loc-b))
-             ((fish-at ?fish ?loc-b)))
+             ((atBottom ?grace) (not(knows ?grace ?pool_depth))
+              (not(atSurface ?grace)))
+             ((!senseDepth ?grace ?pool_depth)
+              (!raise ?grace ?pool_depth)
+              (!communicatePoolDepth ?grace ?fumin ?pool_depth))
 
-  (:- (different ?x ?y) ((not (same ?x ?y))))
-  (:- (down ?x ?y) ((not (top ?x ?y)))) ))
+             ((atBottom ?grace) (knows ?grace ?pool_depth)
+              (not(atSurface ?grace)))
+             ((!raise ?grace ?pool_depth)
+              (!communicatePoolDepth ?grace ?fumin ?pool_depth)))
+
+  (:- (atSurface ?x) ((not (atBottom ?x))))
+  (:- (atBottom ?x) ((not (atSurface ?x)))) ))

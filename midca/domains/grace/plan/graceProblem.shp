@@ -1,9 +1,8 @@
 
 (defproblem problem fish-diving ((loc)
 
-(top a b)
-(fish-at fish1 a)
+(at_surface grace )
 )
  ((achieve-goals (list
-(fish-at fish1 b)
+(knows fumin pool_depth)
  ))))

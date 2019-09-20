@@ -1,24 +1,39 @@
-type(fish)
-type(location)
+type(agent)
+type(depth_value)
 
-predicate(fish-at, [f, loc], [fish, location])
-predicate(top, [loc-from, loc-to], [location, location])
-predicate(down, [loc-from, loc-to], [location, location])
 
-operator(move-fish-down,
-args = [(f, fish), (loc-from, location), (loc-to, location)],
+predicate(knows, [fumin, pool_depth], [agent, depth_value])
+predicate(at_bottom, [grace], [agent])
+predicate(at_surface, [grace], [agent])
+
+operator(communicate_pool_depth,
+args = [(grace, agent), (fumin, agent), (pool_depth, depth_value)],
 preconditions = [
-	condition(fish-at, [f, loc-from]),
-	condition(top, [loc-from, loc-to])],
+	condition(knows, [grace, pool_depth]),
+	condition(at_surface, [grace])],
 results = [
-  condition(fish-at, [f, loc-to]),
-  condition(fish-at, [f, loc-from], negate = True)])
+	condition(knows, [fumin, pool_depth])])
 
-operator(move-fish-up,
-args = [(f, fish), (loc-from, location), (loc-to, location)],
+operator(raise,
+args = [(grace, agent), (pool_depth, depth_value)],
 preconditions = [
-	condition(fish-at, [f, loc-from]),
-	condition(down, [loc-from, loc-to])],
+	condition(knows, [grace, pool_depth]),
+	condition(at_surface, [grace], negate = True)],
 results = [
-  condition(fish-at, [f, loc-to]),
-  condition(fish-at, [f, loc-from], negate = True)])
+  condition(at_surface, [grace])])
+
+operator(sense_depth,
+args = [(grace, agent), (pool_depth, depth_value)],
+preconditions = [
+	condition(at_bottom, [grace])],
+results = [
+	condition(knows, [grace, pool_depth])])
+
+operator(dive,
+args = [(grace, agent), (pool_depth, depth_value)],
+preconditions = [
+	condition(knows, [grace, pool_depth], negate = True),
+	condition(at_bottom, [grace], negate = True)],
+results = [
+	condition(at_bottom, [grace]),
+	condition(at_surface, [grace], negate = True)])

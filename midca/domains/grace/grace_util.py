@@ -30,13 +30,13 @@ def jshop2_state_from_world(world, STATE_FILE, name = "state"):
 
     for atom in world.atoms:
 
-        if atom.predicate.name == "fish-at":
-            f.write("(fish-at " + atom.args[0].name + " " +  atom.args[1].name + ")\n")
-        elif atom.predicate.name == "top":
-            f.write("(top " + atom.args[0].name + " " +  atom.args[1].name + ")\n")
+        if atom.predicate.name == "knows":
+            f.write("(knows " + atom.args[0].name + " " +  atom.args[1].name + ")\n")
+        elif atom.predicate.name == "at_surface":
+            f.write("(at_surface " + atom.args[0].name + " )\n")
 
-        elif atom.predicate.name == "down":
-            f.write("(down " + atom.args[0].name + " " +  atom.args[1].name + ")\n")
+        elif atom.predicate.name == "at_bottom":
+            f.write("(at_bottom " + atom.args[0].name + " )\n")
 
     f.write(")\n")
     f.close()
@@ -68,8 +68,8 @@ def jshop2_tasks_from_goals(goals,pyhopState, STATE_FILE):
         args = [str(arg) for arg in goal.args]
         if args[0] == predicate:
             args.pop(0)
-        if predicate == "fish-at":
-            f.write("(fish-at " +  args[0] + " " +  args[1] + ")\n")
+        if predicate == "knows":
+            f.write("(knows " +  args[0] + " " +  args[1] + ")\n")
 
 
         else:

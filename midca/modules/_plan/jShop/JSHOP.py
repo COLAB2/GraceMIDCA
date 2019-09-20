@@ -43,7 +43,7 @@ def parenthetic_contents(string):
             yield (string[start + 1: i])
 
 def parse(str):
-    elements  = list(parenthetic_contents(str))
+    elements = list(parenthetic_contents(str))
     plan = []
     for elm in elements:
         if(elm[0] == '!' and '(' not in elm):

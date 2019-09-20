@@ -37,7 +37,7 @@ class AsynchronousAct(base.BaseModule):
         if plan.finished():
             print "Plan", plan, "has already been completed"
             return
-        #ideally MIDCA should check for other valid plans, but for now it doesn't.
+        # ideally MIDCA should check for other valid plans, but for now it doesn't.
 
         while i < len(plan):
             action = plan[i]
