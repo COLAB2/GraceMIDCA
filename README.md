@@ -20,10 +20,10 @@ MIDCA Version 1.4: User manual and tutorial for the Metacognitive Integrated Dua
 
     ```
     cd midca/
-    python examples/cogsci_demo.py
+    python examples/grace_demo.py
     ```
 
-4. To see how the MIDCA instantiation used in `cogsci_demo.py` is created and populated, see `examples/cogsci_demo.py`
+4. To see how the MIDCA instantiation used in `grace_demo.py` is created and populated, see `examples/grace_demo.py`
 
 5. For an overview of MIDCA and more details about how it works, see the github wiki
    (https://github.com/COLAB2/midca/wiki) and/or docs folder.
