@@ -823,3 +823,14 @@ class OutgoingMsgHandler(object):
         self.msgType = msgType
         self.publisher = None
         self.subscriber = None
+
+class GraceMidca():
+	def __init__(self,midcaObject, memKey = None)):
+		import sys
+        sys.path.insert(0, '/home/pi/Desktop/Grace_Control')
+		import GliderFunIPC
+		grace = GliderFunIPC.graceFun()
+		if memKey:
+            self.memKey = memKey
+		
+	

@@ -902,4 +902,135 @@ class DoRelease(AsynchAction):
                         print "MIDCA received feedback that action", self, "has failed"
                     return False
         return False
+        
+class GraceMidcaAct():
+	def init():
+		import sys
+		gracePath='/home/pi/Desktop/Grace_Control'
+        sys.path.insert(0, gracePath)
+		import GliderFunIPC
+		self.interface = GliderFunIPC.graceFun()
+		self.bottomDepth = 0
+		self.gracePath = gracePath
+            
+    def communicateDepth(self,depth): #returns boolean telling if depth was sent out over xbee 
+		grace = self.interface
+		return grace.sendXbeeMsg("Depth:"+str(depth))
+		
+	def dive(self): #fills robot tank with water to make it sink
+		grace = self.interface
+		grace.movePump(4)
+	
+	def rise(self): #expells water from robot to make it float
+		grace = self.interface
+		grace.movePump(98)	
+		
+	
+	
+class GraceSense(AsynchAction):
+    
+    '''
+    Action that orders a point action. To 
+    ensure success, an AwaitCurrentLocation action with <= the same maxAllowedLag and the 
+    same target should be done immediately before this.
+    '''
+    
+    def __init__(self, mem, midcaAction, objectOrID, maxAllowedLag, maxDuration,
+    msgID):
+        self.objectOrID = objectOrID
+        self.maxAllowedLag = maxAllowedLag
+        self.maxDuration = maxDuration
+        self.lastCheck = 0.0
+        self.complete = False
+        self.msgID = msgID
+        executeAction = lambda mem, midcaAction, status: self.send_point()
+        completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
+        AsynchAction.__init__(self, mem, midcaAction, executeAction, 
+        completionCheck, True)
+    
+    def send_point(self):
+        
+    
+    def check_confirmation(self):
+        return False  		
+	
+ class GraceCommunicate(AsynchAction):
+    
+    '''
+    Action that orders a point action. To 
+    ensure success, an AwaitCurrentLocation action with <= the same maxAllowedLag and the 
+    same target should be done immediately before this.
+    '''
+    
+    def __init__(self, mem, midcaAction, objectOrID, maxAllowedLag, maxDuration,
+    msgID):
+        self.objectOrID = objectOrID
+        self.maxAllowedLag = maxAllowedLag
+        self.maxDuration = maxDuration
+        self.lastCheck = 0.0
+        self.complete = False
+        self.msgID = msgID
+        executeAction = lambda mem, midcaAction, status: self.send_point()
+        completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
+        AsynchAction.__init__(self, mem, midcaAction, executeAction, 
+        completionCheck, True)
+    
+    def send_point(self):
+        
+    
+    def check_confirmation(self):
+        return False         
+            
+class GraceRaise(AsynchAction):
+    
+    '''
+    Action that orders a point action. To 
+    ensure success, an AwaitCurrentLocation action with <= the same maxAllowedLag and the 
+    same target should be done immediately before this.
+    '''
+    
+    def __init__(self, mem, midcaAction, objectOrID, maxAllowedLag, maxDuration,
+    msgID):
+        self.objectOrID = objectOrID
+        self.maxAllowedLag = maxAllowedLag
+        self.maxDuration = maxDuration
+        self.lastCheck = 0.0
+        self.complete = False
+        self.msgID = msgID
+        executeAction = lambda mem, midcaAction, status: self.send_point()
+        completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
+        AsynchAction.__init__(self, mem, midcaAction, executeAction, 
+        completionCheck, True)
+    
+    def send_point(self):
+        
+    
+    def check_confirmation(self):
+        return False    
 
+class GraceDive(AsynchAction):
+    
+    '''
+    Action that orders a point action. To 
+    ensure success, an AwaitCurrentLocation action with <= the same maxAllowedLag and the 
+    same target should be done immediately before this.
+    '''
+    
+    def __init__(self, mem, midcaAction, objectOrID, maxAllowedLag, maxDuration,
+    msgID):
+        self.objectOrID = objectOrID
+        self.maxAllowedLag = maxAllowedLag
+        self.maxDuration = maxDuration
+        self.lastCheck = 0.0
+        self.complete = False
+        self.msgID = msgID
+        executeAction = lambda mem, midcaAction, status: self.send_point()
+        completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
+        AsynchAction.__init__(self, mem, midcaAction, executeAction, 
+        completionCheck, True)
+    
+    def send_point(self):
+        
+    
+    def check_confirmation(self):
+        return False  
