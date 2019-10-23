@@ -1,7 +1,7 @@
 from _plan import pyhop
 from _plan import modified_pyhop
 from midca import plans, base
-from midca.modules._plan.asynch import asynch
+from midca.modules._plan.asynch import asynch_3d
 from midca.modules._plan.jShop import JSHOP, JSHOP2
 from midca.modules._plan.pyhop import print_state,  print_methods, print_operators
 import collections
@@ -494,6 +494,7 @@ class JSHOPPlanner(base.BaseModule):
                 return
             #change from jshop plan to MIDCA plan
             midcaPlan = plans.Plan([plans.Action(action[0], *list(action[1:])) for action in jshopPlan], goals)
+            asynchPlan = asynch_3d.asynch_plan(self.mem, midcaPlan)
 
             if verbose >= 1:
                 print "Planning complete."
@@ -502,8 +503,9 @@ class JSHOPPlanner(base.BaseModule):
                 for a in midcaPlan:
                     print("  "+str(a))
             #save new plan
-            if midcaPlan != None:
-                self.mem.get(self.mem.GOAL_GRAPH).addPlan(midcaPlan)
+            # save new plan
+            if asynchPlan != None:
+                self.mem.get(self.mem.GOAL_GRAPH).addPlan(asynchPlan)
             if trace: trace.add_data("PLAN",midcaPlan)
 
 

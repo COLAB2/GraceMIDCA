@@ -824,6 +824,7 @@ class OutgoingMsgHandler(object):
         self.publisher = None
         self.subscriber = None
 
+"""
 class GraceMidca():
 	def __init__(self,midcaObject, memKey = None)):
 		import sys
@@ -832,5 +833,5 @@ class GraceMidca():
 		grace = GliderFunIPC.graceFun()
 		if memKey:
             self.memKey = memKey
-		
+"""
 	

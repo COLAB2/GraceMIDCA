@@ -478,3 +478,168 @@ class MAReporter(base.BaseModule):
             self.writeS.send(self.endMsg)
         finally:
             self.writeS.shutdown(socket.SHUT_RDWR)
+
+
+class GraceMidcaPercieve():
+    '''
+    class that provides high level perception of Grace data for midca example
+    '''
+
+    def init(self):  # initiallizes socket connection library to communicate with and control grace
+        import sys
+        gracePath = '/home/pi/Desktop/Grace_Control'
+
+        sys.path.insert(0, gracePath)
+        import GliderFunIPC
+        self.interface = GliderFunIPC.graceFun()
+        self.bottomDepth = -1
+        self.gracePath = gracePath
+
+
+    def senseDepth(self):  # reads the pressure sensor and converts it to depth in meters
+        grace = self.interface
+        return grace.readDepth()
+
+
+    def beginBottomCheck(self):  # will call the function to check at bottom
+        import os
+        os.system("./findBottom")
+
+
+    def checkAtBottom(self):  # read a file output by program chechinkg for bottom and return true or false
+        atBottom = False
+        gracePath = ""
+        f = open(gracePath + "atBottom", 'r')
+        atBottom = (1 == int(f.readline()))
+        f.close()
+        if atBottom:
+            f = open(gracePath + "atBottom", 'w')
+            f.write("0")
+            f.close()
+            grace = self.interface
+        self.bottomDepth = grace.readDepth()
+        return atBottom
+
+
+    def checkCommunicationAck(self):  # read a file output by program chechinkg for surface and return true or false
+        # sending $%GO%$ over xbee will cause a file "Next_Dive_GO" to be produce with 1 in line one
+        Acknowleged = False
+        gracePath = ""
+        f = open(gracePath + "Next_Dive_GO", 'r')
+        Acknowleged = (1 == int(f.readline()))
+        f.close()
+
+        # to remove error
+        f = open(gracePath + "atBottom", 'r')
+        atBottom = (1 == int(f.readline()))
+        f.close()
+        #
+        if atBottom:
+            f = open(gracePath + "Next_Dive_GO", 'w')
+            f.write("0")
+            f.close()
+        return Acknowleged
+
+
+    def checkAtSurfaceDepth(self):  # chechs if depth is close enough to say we are surfaced
+        grace = self.interface
+        depth = grace.readDepth()
+        return depth <= .2
+
+
+class GraceObserver(base.BaseModule):
+    '''
+    MIDCA Module communicates with the grace to obtain the world states
+    '''
+
+    def init(self, world, mem):
+        """
+        This function is only called during the initialization of midca
+        So, it is a one time function call
+        """
+
+        base.BaseModule.init(self, mem)
+        if not world:
+            raise ValueError("world is None!")
+        self.world = world
+        self.GracePerception = GraceMidcaPercieve()  # initallizes Grace Midca Percive class for easy access to high level signals midca needs
+        self.runningBottomCheck = False  # flag to see if we are already checking for bottom
+        # can initialize here ..
+
+
+    # perfect observation
+    def observe(self):
+        return self.world.copy()
+
+
+    def run(self, cycle, verbose=2):
+        '''
+        Read from the subscriber in the format "X:float,Y:float,SPEED:float"
+        '''
+        world = self.observe()
+        if not world:
+            raise Exception("World observation failed.")
+        self.mem.add(self.mem.STATES, world)
+
+        '''
+        The following code gets the depth and the acknowledgement from grace
+        to create states for the world.
+        For example : Should comeback and complete this later
+        '''
+        states = ""
+        try:
+            # write the function to aquire depth and acknowledgement
+            GP = self.GracePerception
+
+            atSurface = GP.checkAtSurfaceDepth()  # checks if depth is close to surface depth
+            if not self.runningBottomCheck and not atSurface:  # only check for bottom if we are not already doing it
+                GP.beginBottomCheck()
+                self.runningBottomCheck = True
+
+            acknowledge = GP.checkCommunicationAck()  # check if we have recieved acknowledgment from fumin
+            atBottom = GP.checkAtBottom()  # check if we have determined that we are at the bottom
+            if atSurface or acknowledge:
+                states += "at_surface(grace)\n"
+
+                # similarly for bottom
+            elif atBottom:
+                states += "at_bottom(grace)\n"
+                self.runningBottomCheck = False
+                # for pool depth (there can be multiple pooldepths)
+                # we should discuss on how many pool depths we should have
+
+                if acknowledge:
+                    states += "knows(fumin, pooldepth1)\n"
+
+
+
+
+
+        except:
+            # if there is any failure to acess the grace functions, lets
+            # use this block (to be completed later)
+            pass
+
+
+        # this is to update the world into memory
+        if not states == "":
+            if verbose >= 1:
+                print(states)
+            stateread.apply_state_str(self.world, states)
+            self.mem.add(self.mem.STATES, self.world)
+
+        states = self.mem.get(self.mem.STATES)
+        if len(states) > 400:
+            # print "trimmed off 200 old stale states"
+            states = states[200:]
+            self.mem.set(self.mem.STATES, states)
+        # End Memory Usage Optimization
+
+        if verbose >= 1:
+            print "World observed."
+
+        trace = self.mem.trace
+        if trace:
+            trace.add_module(cycle, self.__class__.__name__)
+            trace.add_data("WORLD", copy.deepcopy(self.world))
+
