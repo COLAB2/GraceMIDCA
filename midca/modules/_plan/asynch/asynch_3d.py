@@ -182,14 +182,14 @@ class AsynchAction:
 
 
 class GraceMidcaAct():
-    def init(self):
-        import sys
+    def __init__(self):
         gracePath='/home/pi/Desktop/Grace_Control'
-        sys.path.insert(0, gracePath)
-        import GliderFunIPC
-        self.interface = GliderFunIPC.graceFun()
         self.bottomDepth = 0
         self.gracePath = gracePath
+        import sys
+        sys.path.insert(0, gracePath)
+        import GliderFunIPC
+        self.interface = GliderFunIPC.GraceFun()
 
     def communicateDepth(self,depth): #returns boolean telling if depth was sent out over xbee
         grace = self.interface

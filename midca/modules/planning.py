@@ -443,7 +443,9 @@ class JSHOPPlanner(base.BaseModule):
         if midcaPlan:
             if verbose >= 2:
                 print "Old plan retrieved. Checking validity...",
-            valid = world.plan_correct(midcaPlan)
+            #valid = world.plan_correct(midcaPlan)
+            # will comeback and edit this
+            valid = True
             if not valid:
                 midcaPlan = None
                 #if plan modification is added to MIDCA, do it here.

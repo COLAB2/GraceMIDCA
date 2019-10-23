@@ -310,14 +310,14 @@ class GraceMidcaPercieve():
 	'''
 	class that provides high level perception of Grace data for midca example
 	'''
-	def init(self):#initiallizes socket connection library to communicate with and control grace
+	def __init__(self):#initiallizes socket connection library to communicate with and control grace
 		import sys
 		gracePath='/home/pi/Desktop/Grace_Control'
         sys.path.insert(0, gracePath)
-		import GliderFunIPC
-		self.interface = GliderFunIPC.graceFun()
-		self.bottomDepth = -1
-		self.gracePath = gracePath
+        import GliderFunIPC
+        self.interface = GliderFunIPC.graceFun()
+        self.bottomDepth = -1
+        self.gracePath = gracePath
 		
 	def senseDepth(self): #reads the pressure sensor and converts it to depth in meters
 		grace = self.interface
@@ -334,10 +334,10 @@ class GraceMidcaPercieve():
 		atBottom= (1==int(f.readline()))
 		f.close()
 		if atBottom:
-			f=open(gracePath+"atBottom",'w')
-			f.write("0")
-			f.close()
-			grace = self.interface
+                    f=open(gracePath+"atBottom",'w')
+                    f.write("0")
+                    f.close()
+                    grace = self.interface
 		    self.bottomDepth=grace.readDepth()
 		return atBottom 
 		
@@ -349,9 +349,9 @@ class GraceMidcaPercieve():
 		Acknowleged= (1==int(f.readline()))
 		f.close()
 		if atBottom:
-			f=open(gracePath+"Next_Dive_GO",'w')
-			f.write("0")
-			f.close()
+                    f=open(gracePath+"Next_Dive_GO",'w')
+                    f.write("0")
+                    f.close()
 		return Acknowleged  
 		
 	def checkAtSurfaceDepth(): #chechs if depth is close enough to say we are surfaced
@@ -365,10 +365,10 @@ class GraceObserver(base.BaseModule):
     '''
 
     def init(self, world, mem):
-		"""
+        """
 		This function is only called during the initialization of midca
 		So, it is a one time function call 
-		"""
+        """
         base.BaseModule.init(self, mem)
         if not world:
             raise ValueError("world is None!")
@@ -397,28 +397,28 @@ class GraceObserver(base.BaseModule):
         For example : Should comeback and complete this later
         '''
         try:
-			# write the function to aquire depth and acknowledgement
-			GP = self.GracePerception
-			
-			atSurface = GP.checkAtSurfaceDepth() #checks if depth is close to surface depth
-			if not self.runningBottomCheck and not atSurface:#only check for bottom if we are not already doing it 
-				GP.beginBottomCheck()
-				self.runningBottomCheck = True
-				
-			acknowledge = GP.checkCommunicationAck() # check if we have recieved acknowledgment from fumin
-			atBottom = GP.checkAtBottom() #check if we have determined that we are at the bottom
+            # write the function to aquire depth and acknowledgement
+            GP = self.GracePerception
+
+            atSurface = GP.checkAtSurfaceDepth() #checks if depth is close to surface depth
+            if not self.runningBottomCheck and not atSurface:#only check for bottom if we are not already doing it 
+	        GP.beginBottomCheck()
+	        self.runningBottomCheck = True
+	
+            acknowledge = GP.checkCommunicationAck() # check if we have recieved acknowledgment from fumin
+            atBottom = GP.checkAtBottom() #check if we have determined that we are at the bottom
             if  atSurface or acknowledge:
                 states+="at_surface(grace)\n"
 			
-			# similarly for bottom
-			elif atBottom:
+	    # similarly for bottom
+            elif atBottom:
                 states+="at_bottom(grace)\n"
                 self.runningBottomCheck = False
             # for pool depth (there can be multiple pooldepths)
             # we should discuss on how many pool depths we should have
             
             if acknowledge:
-				states+="knows(fumin, pooldepth1)\n"
+                states+="knows(fumin, pooldepth1)\n"
 				
 				
             
