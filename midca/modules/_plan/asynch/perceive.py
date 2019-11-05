@@ -315,7 +315,7 @@ class GraceMidcaPercieve():
 		gracePath='/home/pi/Desktop/Grace_Control'
         sys.path.insert(0, gracePath)
         import GliderFunIPC
-        self.interface = GliderFunIPC.graceFun()
+        self.interface = GliderFunIPC.GraceFun()
         self.bottomDepth = -1
         self.gracePath = gracePath
 		
@@ -323,11 +323,11 @@ class GraceMidcaPercieve():
 		grace = self.interface
 		return grace.readDepth()
 		
-	def beginBottomCheck(): #will call the function to check at bottom
+	def beginBottomCheck(self): #will call the function to check at bottom
 		import os
-		os.system("./findBottom")
+		os.system("./findBottom &")
 		
-	def checkAtBottom(): #read a file output by program chechinkg for bottom and return true or false
+	def checkAtBottom(self): #read a file output by program chechinkg for bottom and return true or false
 		atBottom = False
 		gracePath=""
 		f=open(gracePath+"atBottom",'r')
@@ -341,7 +341,7 @@ class GraceMidcaPercieve():
 		    self.bottomDepth=grace.readDepth()
 		return atBottom 
 		
-	def checkCommunicationAck(): #read a file output by program chechinkg for surface and return true or false
+	def checkCommunicationAck(self): #read a file output by program chechinkg for surface and return true or false
 		                  #sending $%GO%$ over xbee will cause a file "Next_Dive_GO" to be produce with 1 in line one
 		Acknowleged = False
 		gracePath=""
@@ -354,7 +354,7 @@ class GraceMidcaPercieve():
                     f.close()
 		return Acknowleged  
 		
-	def checkAtSurfaceDepth(): #chechs if depth is close enough to say we are surfaced
+	def checkAtSurfaceDepth(self): #chechs if depth is close enough to say we are surfaced
 		grace = self.interface
 		depth = grace.readDepth()
 		return depth <= .2    

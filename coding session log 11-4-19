@@ -1,0 +1,75 @@
+Hi, lets run the experiment with the
+grace
+
+Hi. Let's just run in to make sure everything
+flows properly without robot. I edited the code so
+ that it will find bottom depth even is
+at the surface.
+
+These are actions right ! First the 
+grace should start on surface. Later
+when it dives it should be at bottom
+can you make those actions execute in
+real time?
+
+Yes, but currently, the robot will need
+to go in water to do it. I can fake the
+measurement to the robot, but I would like
+to make sure everything is correct and
+that the programs runs by itself once we
+give it a goal before we test on the actual
+robot.
+
+Perfect.
+
+Right now it should execute the sensedepth
+action. Inorder for it to know it completed
+the action, it should percieve a 
+state (knows(grace, pooldepth). can you
+fake this in percieve?
+
+This one doesn't need to be faked. The
+robot always has access to the depth.
+Also as clarification, the pooldepth state
+is just atBottom or at Surface correct?
+
+I think last time we agreed that, the
+pooldepth is when the fish is not at_surface
+and bottom right?
+
+Yes, but I edited the condition of not
+at surface out so that it will still say it is
+at bottom after a period of time for the
+purposes of testing the code.
+
+Just a minute. 2 minutes I will
+execute the action. can you open asynch.py?
+
+Yes. I think that is because of the editor.
+You have to use all spaces and not tabs.
+
+got you.
+Now it should execute raise action, 
+can it get at_surface now ?
+
+Yes. It should be able to.
+
+it still has at_bottom.
+
+ok ets check out the percieve code. This
+should fix it..
+
+The fish should either start at surface
+or at bottom during the start of experiment.
+
+ok. I will connect to robot to feed in
+spoffed depth manually. have to turn of raspberry pi
+to do it.
+
+sure.
+
+Will text you when it is back up.
+
+
+
+ 

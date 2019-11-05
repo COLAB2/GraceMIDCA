@@ -1,0 +1,241 @@
+We can talk here if needed.
+
+Sure
+
+Okay So far I have implemented all
+the functionality. We now need to
+abstract it for midca.
+
+How do we go about doing that?
+
+The abstractions should be done in 
+the perceive phase. 
+
+Are we using ROS right now?
+No. No need for it if its only job 
+is for communication..
+
+ok so lets write the communication
+in the percieve phase. I will 
+copy a function for reference 
+right now. just a minute
+
+Just a minute. I am looking at the
+states in grace midca. 
+
+ok
+
+Here are the states that we need
+knows(fumin, pooldepth)
+at_bottom(grace)
+at_surface(grace)
+here's the question
+how do we know when grace is surfaced?
+
+It is based on the depth and we 
+can also use an acknowledge message
+from the person who recieved 
+communication, then we know we are
+at surface because radio works 
+and depth is almost 0
+
+ok ! so the code in percieve should be
+if (depth ==  0 or message):
+	at_surface(grace)
+so can you write this code
+"if (depth ==  0 or message)" ?
+I will point you where it should be 
+written. is it ok ?
+
+yes. we can do that? the message
+flag will most likely require that
+we write to a file when the message
+is recieved or wait a set period
+to see if a message was recieved
+
+I have a clarification question. 
+midca controls grace right? then
+from your previous message, did you
+say that if grace can succesfully
+communicate with a person then it
+is surfaced right? 
+
+Yes
+
+So, we now have two options ! we
+can either check for the flag 
+or wait certain amount of time 
+for the flag to be set, is that correct?
+
+Exactly.
+
+midca is a continous loop, so as
+of now I dont think we should wait
+for the message. If it misses in
+one cycle. It sure can get the message
+in the next cycle.
+
+Great. So I will set it up where
+we check a file that tells us if
+we recieved an acknowledge message
+
+Sure ! Before you do that. I will just
+give you the template in the 
+percieve.py. So you know where you
+can write. Does that sound good?
+
+
+Perfect!
+
+give me 5 minutes.
+
+I have created Graceobserver class
+and had some comments where the
+code should be written. Let me
+know if you have any questions?
+one more thing this class contains
+init and ru functions 
+init is only run when midca is
+initialized and run functions is
+executed iteratively 
+
+Ok. I think I can work with this.
+It may take 30 minutes or so. So
+you can leave and get other work done
+I will text when I am finished
+or have questions.
+
+Sure ! sounds good ! 
+
+Nice ! How about pool depth? MY
+idea is to have certain depths
+mapped to the words
+for example if it is at 40 then
+pooldepth1
+60 then pooldepth2 and so on..
+
+I don't particularly like that idea
+because depth is a continous 
+quantity that we are trying to 
+determine. So we won't know it
+ahead of time
+
+How about mapping a range of depths
+to a certain area?
+
+We can do that for now, at least to 
+get a working example. We can 
+work out the fine details after the
+code is able to run.
+
+Sure ! let us have one pooldepth1 
+you choose the range? does it sound ok
+
+Can pooldepth just be a variable
+without a numeric value? Just at
+bottom let's us know that we know
+it?
+
+I didnt quite get that ! do you mean 
+if the grace is not at the surface or
+at bottom then it is at pooldepth.
+do you want to assume something like that?
+
+That would work. Then we have
+three states that cover the continium
+
+Sure. this would get us started.
+One more thing, after that is done
+I will have to modify some part of the
+code in midca, which I will do it 
+today. But inorder to execute, I
+think we need to meet again tomorrow
+is it ok ?
+
+Yes. Same time works for me.
+
+How about 11 ?
+
+yes.
+
+Sure that works. Let me know when you
+are done. I will push the code to
+github and work on my computer and pull 
+it back. Through vpn, it is a bit slow
+working on the code. is it ok?
+
+Yep, that works. This is mostly done.
+Are there any other changes you would
+like to add before pushing it to github?
+
+Not I can think of. I feel everything
+is in place right now. I will let
+you know If I missed anything.
+I am pretty sure I got
+what i needed for the initial start.
+
+What about the async_3d.py? Should 
+something similar to this be done 
+there?
+
+
+I have thought about that, before
+I want you to write the feedback
+function for every action. But now
+since we can percieve each and
+every action in the percieve phase
+we are already getting the feedback
+this can be used in the asynch_3d.py
+You have completed functions for
+all the actions right?
+
+Yes. Let's look to make sure though
+These functions interface with the
+low level actions of the robot,
+but I don't have them as the 
+AsyncAction type classes like 
+GraceSense(...)
+
+
+Ok ! I will work on it. Its not a 
+problem. I can use those functions
+to execute the actions. I think
+there is an action to sensedepth
+as well. which should read the 
+value from the depth sensor or
+some sensor
+
+Yes. I moved it to the percieve modulr
+though. I can put it back here as well.
+
+Its ok lets leave it like that. 
+sensing can be considered as
+both action and perception, but 
+lets leave it like that. Can
+you please comment that part of
+the code in percieve. So I can
+use it if required 
+
+Yes. Give me a minute.
+Good?
+
+Perfect ! I will now push the code to 
+github. Is it ok?
+
+Yes.
+
+If you want to push the code through
+your account so that you will
+get a commit, please do so.
+If you dont care about that I c
+an use my credentials. Let me know
+
+You can use yours.
+
+Sure !
+
+Done. Thank you 
+
+No problem!
+
+See you tomorrow. 

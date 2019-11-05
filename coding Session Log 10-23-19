@@ -1,0 +1,111 @@
+Hi, I have made some changes to
+the code. Let me pull it from
+github. is it ok ?
+
+Yes, just let me close the old versions
+first. ok!
+
+cool ! I will pull it now
+
+Did you change asynch_3d after
+yesterday?
+
+No, but it wasn't saved when I just 
+closed it. So you may not have
+pushed the most recent version
+
+I think I have got all the changes
+it might be very slight change
+I have made a lot of changes
+to asynch_3d . I am ignoring it now
+
+Lets try to run the code, to see
+if it works. Do you have to do
+something for the interface?
+
+It should already be up and running, but
+it is not connected to the robot
+at the moment, so sensor values
+will likely output 0.
+
+Thats fine, lets run the code
+and see if there are no errors
+and we can see if we are atleast
+getting 0 using print statements
+is it ok ?
+
+Yes. I will pull up the files.
+Is this the file that is need to
+run?
+
+yes it is. I will run the command noe
+
+We are getting an error in the
+act phase. the corresponding
+file would be asynch_3d.py
+
+Try running again. I believe
+it was a spelling error.
+
+sure !
+
+It seems as though it is not being
+initalized correctlly. Give me
+ a few to find out why
+
+sure. try to initialize a variable
+before the import statements
+and check. Just a suggestion.
+Let me know when you figure it out
+
+ok. I will text.
+
+Shall I run the code?
+
+I just ran it. It has completed
+planing phase
+
+inorder for the dive action to 
+complete, the predicate should
+be at_bottom from the
+percieve phase
+
+
+that is something we can manufacture
+I think we can do it by putting
+a fake depth or I can set the 
+program up to tell us we are ate bottom
+for testing purposes.
+
+Sure ! before that let me run
+a cycle to see if everything in
+working fine
+
+There is an error, let me look
+at that. can you open planning.py
+
+Hi, its hard to edit from here
+as of now this will work, but
+I will modify this today
+and push it to github. I will
+try to run it again. 
+
+Let me push the code and I will work 
+on it and let you know in 15 min
+
+ok. I have to attend a meeting at 1
+and won't be free again until 4.
+
+oh ! I should teach a class 
+from 3:30 to 4:50 pm. I will
+push and pull the code 
+if you have time please run the
+code. else we can meet again
+tomorrow. does it sound good?
+
+Yes, I will run and send you a screen 
+shot of the output if any error comes
+up that I can't fix.
+
+sure ! 
+

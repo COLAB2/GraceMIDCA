@@ -197,15 +197,33 @@ class GraceMidcaAct():
 
     def dive(self): #fills robot tank with water to make it sink
         grace = self.interface
-        grace.movePump(4)
+        #grace.movePump(4)
+        grace.moveMass(4)
 
     def rise(self): #expells water from robot to make it float
         grace = self.interface
-        grace.movePump(98)
+        #grace.movePump(98)
+        grace.moveMass(98)
 
     def senseDepth(self):  # reads the pressure sensor and converts it to depth in meters
         grace = self.interface
         return grace.readDepth()
+        
+    def checkCommunicationAck(self):  # read a file output by program chechinkg for surface and return true or false
+        # sending $%GO%$ over xbee will cause a file "Next_Dive_GO" to be produce with 1 in line one
+        Acknowleged = False
+        gracePath = self.gracePath+"/"
+        try:
+            f = open(gracePath + "Next_Dive_GO", 'r')
+            Acknowleged = (1 == int(f.readline()))
+            f.close()
+            if Acknowleged:
+                f=open(gracePath+"Next_Dive_GO",'w')
+                f.write("0")
+                f.close()
+        except:
+            return False
+        return Acknowleged
 
 
 
@@ -217,6 +235,8 @@ class GraceSense(AsynchAction):
 
     def __init__(self, mem, midcaAction):
         self.GraceAct = GraceMidcaAct()
+        self.mem = mem
+        self.skip = True
         self.complete = False
         executeAction = lambda mem, midcaAction, status: self.implement_action()
         completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
@@ -229,9 +249,11 @@ class GraceSense(AsynchAction):
 
     def check_confirmation(self):
         world = self.mem.get(self.mem.STATES)[-1]
-        for atom in world.atoms:
-            if atom.predicate.name == "knows" and atom.predicate.name == "at_surface" and atom.predicate.name == "at_bottom":
-                return True
+        if not self.skip:
+			for atom in world.atoms:
+				if atom.predicate.name == "knows" or atom.predicate.name == "at_surface" or atom.predicate.name == "at_bottom":
+					return True
+        self.skip = False
         return False
 
 class GraceCommunicate(AsynchAction):
@@ -242,6 +264,8 @@ class GraceCommunicate(AsynchAction):
 
     def __init__(self, mem, midcaAction):
         self.GraceAct = GraceMidcaAct()
+        self.mem = mem
+        self.skip = True
         self.complete = False
         executeAction = lambda mem, midcaAction, status: self.implement_action()
         completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
@@ -255,9 +279,11 @@ class GraceCommunicate(AsynchAction):
 
     def check_confirmation(self):
         world = self.mem.get(self.mem.STATES)[-1]
-        for atom in world.atoms:
-          if atom.predicate.name == "knows" and atom.args[0].name == "fumin":
-            return True
+        if not self.skip:
+			for atom in world.atoms:
+				if atom.predicate.name == "knows" and atom.args[0].name == "fumin":
+					return True
+        self.skip = False
         return False
 
 class GraceRaise(AsynchAction):
@@ -268,6 +294,7 @@ class GraceRaise(AsynchAction):
 
     def __init__(self, mem, midcaAction):
         self.GraceAct = GraceMidcaAct()
+        self.mem = mem
         self.complete = False
         executeAction = lambda mem, midcaAction, status: self.implement_action()
         completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
@@ -292,6 +319,7 @@ class GraceDive(AsynchAction):
 
     def __init__(self, mem, midcaAction):
         self.GraceAct = GraceMidcaAct()
+        self.mem = mem
         self.complete = False
         executeAction = lambda mem, midcaAction, status: self.implement_action()
         completionCheck = lambda mem, midcaAction, status: self.check_confirmation()

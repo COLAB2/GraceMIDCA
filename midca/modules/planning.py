@@ -352,7 +352,7 @@ class JSHOPPlanner(base.BaseModule):
         self.domain_file = domain_file
         self.state_file= state_file
 
-        self.validate_plan = lambda plan: asynch.FAILED not in [action.status for action in plan]
+        self.validate_plan = lambda plan: asynch_3d.FAILED not in [action.status for action in plan]
 
         try:
             self.working = True
@@ -424,7 +424,7 @@ class JSHOPPlanner(base.BaseModule):
         if midcaPlan:
             if verbose >= 2:
                 print "Old plan retrieved. Checking validity...",
-            valid = world.get_old_plan(goals)
+            valid = self.get_old_plan(goals)
             if not valid:
                 midcaPlan = None
                 #if plan modification is added to MIDCA, do it here.
