@@ -245,14 +245,21 @@ class GraceSense(AsynchAction):
 
     def implement_action(self):
         depth = self.GraceAct.senseDepth()
-
+        # store it in memory
+        self.mem.set(self.mem.SENSE_DEPTH, depth)
 
     def check_confirmation(self):
-        world = self.mem.get(self.mem.STATES)[-1]
+        #world = self.mem.get(self.mem.STATES)[-1]
         if not self.skip:
-			for atom in world.atoms:
-				if atom.predicate.name == "knows" or atom.predicate.name == "at_surface" or atom.predicate.name == "at_bottom":
-					return True
+			# check if the depth is in memory
+            if self.mem.get(self.mem.SENSE_DEPTH):
+				return True
+				
+		# not usefull code for now		
+		#	for atom in world.atoms:
+		#		if atom.predicate.name == "knows" or atom.predicate.name == "at_surface" or atom.predicate.name == "at_bottom":
+		#			return True
+		
         self.skip = False
         return False
 
@@ -266,6 +273,7 @@ class GraceCommunicate(AsynchAction):
         self.GraceAct = GraceMidcaAct()
         self.mem = mem
         self.skip = True
+        self.depth = None
         self.complete = False
         executeAction = lambda mem, midcaAction, status: self.implement_action()
         completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
@@ -273,8 +281,12 @@ class GraceCommunicate(AsynchAction):
         completionCheck, True)
 
     def implement_action(self):
-        depth = self.GraceAct.senseDepth()
-        self.GraceAct.communicateDepth(depth)
+		self.depth = self.mem.get(self.mem.SENSE_DEPTH)
+		if self.depth:
+			self.GraceAct.communicateDepth(self.depth)
+		else:
+			global FAILED
+			return FAILED
 
 
     def check_confirmation(self):
@@ -284,6 +296,10 @@ class GraceCommunicate(AsynchAction):
 				if atom.predicate.name == "knows" and atom.args[0].name == "fumin":
 					return True
         self.skip = False
+        
+        # continously communicate depth to grace
+        if self.depth:
+			self.GraceAct.communicateDepth(self.depth)
         return False
 
 class GraceRaise(AsynchAction):

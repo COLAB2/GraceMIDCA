@@ -78,6 +78,9 @@ class Memory:
     	ACTUAL_SCORE = "__actual score"
     	EXPECTED_COST= "__expected cost"
     	ACTUAL_COST= "__actual cost"
+    	
+    	#Grace Domain
+    	SENSE_DEPTH = "__store depth"
 
 	def __init__(self, args = {}):
 		self.knowledge = {}

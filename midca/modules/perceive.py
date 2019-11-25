@@ -503,7 +503,7 @@ class GraceMidcaPercieve():
 
     def beginBottomCheck(self):  # will call the function to check at bottom
         import os
-        os.system("./findBottom &")
+        os.system("./findBottom -interval 5 &")
 
 
     def checkAtBottom(self):  # read a file output by program chechinkg for bottom and return true or false

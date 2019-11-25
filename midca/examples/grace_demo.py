@@ -58,7 +58,7 @@ myMidca.append_module("Act", act.AsynchronousAct())
 myMidca.storeHistory = True
 
 myMidca.init()
-myMidca.run(usingInterface=True)
+myMidca.run(usingInterface=False)
 
 '''
 The code below would print out MIDCA's goal set for the first 20 phases of the run above. Note that any memory values can be accessed in this way, assuming that the storeHistory value was set to True during the run. This code is left as an example, but commented out because it will throw an error if fewer than 20 cycles were simulated.
