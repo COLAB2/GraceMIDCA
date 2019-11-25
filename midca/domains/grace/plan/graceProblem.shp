@@ -1,7 +1,6 @@
 
 (defproblem problem fish-diving ((loc)
 
-(at_surface grace )
 )
  ((achieve-goals (list
 (knows fumin pooldepth)
