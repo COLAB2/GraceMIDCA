@@ -30,9 +30,11 @@ STATE_FILE = DOMAIN_ROOT + "states/grace_state.sim"
 JSHOP_DOMAIN_FILE = MIDCA_ROOT + "domains/grace/plan/graceDomain.shp"
 JSHOP_STATE_FILE = MIDCA_ROOT + "domains/grace/plan/graceProblem.shp"
 DISPLAY_FUNC = grace_util.world_display
+GOAL_GRAPH_CMP_FUNC = grace_util.preferApprehend
 
 world = domainread.load_domain(DOMAIN_FILE)
 stateread.apply_state_file(world, STATE_FILE)
+
 #creates a PhaseManager object, which wraps a MIDCA object
 myMidca = base.PhaseManager(world, display = DISPLAY_FUNC, verbose=4)
 #add phases by name
@@ -44,6 +46,7 @@ myMidca.append_module("Simulate", simulator.ASCIIWorldViewer(display=DISPLAY_FUN
 myMidca.append_module("Simulate", simulator.MidcaActionSimulator())
 myMidca.append_module("Perceive", perceive.PerfectObserver())
 myMidca.append_module("Interpret", guide.MoosGoalInput())
+myMidca.append_module("Interpret", guide.GraceGoalAnomaly())
 myMidca.append_module("Eval", evaluate.SimpleEval())
 myMidca.append_module("Intend", intend.SimpleIntend())
 myMidca.append_module("Plan", planning.JSHOPPlannerTest(grace_util.jshop2_state_from_world,
@@ -54,9 +57,9 @@ myMidca.append_module("Plan", planning.JSHOPPlannerTest(grace_util.jshop2_state_
 myMidca.append_module("Act", act.AsynchronousAct())
 
 
-
 #tells the PhaseManager to copy and store MIDCA states so they can be accessed later.
 myMidca.storeHistory = True
+myMidca.initGoalGraph(cmpFunc = GOAL_GRAPH_CMP_FUNC)
 myMidca.init()
 myMidca.run(usingInterface=True)
 

@@ -1,40 +1,58 @@
 type(agent)
 type(depth_value)
 
+predicate(communicated_depth, [grace, fumin, pooldepth], [agent, agent, depth_value])
+predicate(sensed_depth, [grace, pooldepth], [agent, depth_value])
+predicate(recorded_depth, [grace, pooldepth], [agent, depth_value])
+predicate(emptied_sand, [grace], [agent])
+predicate(cleaned_vines, [grace], [agent])
+predicate(at_pooldepth, [grace, pooldepth], [agent, depth_value])
+predicate(enabled, [grace], [agent])
 
-predicate(knows, [fumin, pool_depth], [agent, depth_value])
-predicate(at_bottom, [grace], [agent])
-predicate(at_surface, [grace], [agent])
-
-operator(communicatepooldepth,
+operator(communicate,
 args = [(grace, agent), (fumin, agent), (pool_depth, depth_value)],
 preconditions = [
-	condition(knows, [grace, pool_depth]),
-	condition(at_surface, [grace])],
+	condition(recorded_depth, [grace, pool_depth])],
 results = [
-	condition(knows, [fumin, pool_depth])])
+	condition(communicated_depth, [grace, fumin, pool_depth])])
 
 operator(raise,
-args = [(grace, agent), (pool_depth, depth_value)],
+args = [(grace, agent), (pool_depth, depth_value), (pool_depth1, depth_value)],
 preconditions = [
-	condition(knows, [grace, pool_depth]),
-	condition(at_surface, [grace], negate = True)],
+    condition(at_pooldepth, [grace, pool_depth]),
+	condition(at_pooldepth, [grace, pool_depth1], negate = True),
+	condition(enabled, [grace])],
 results = [
-  condition(at_surface, [grace]),
-  condition(at_bottom, [grace], negate = True)])
+	condition(at_pooldepth, [grace, pool_depth1]),
+	condition(at_pooldepth, [grace, pool_depth], negate = True)])
 
 operator(sensedepth,
 args = [(grace, agent), (pool_depth, depth_value)],
 preconditions = [
-	condition(at_bottom, [grace])],
+	condition(enabled, [grace])],
 results = [
-	condition(knows, [grace, pool_depth])])
+	condition(sensed_depth, [grace, pool_depth])])
 
-operator(dive,
+operator(recorddepth,
 args = [(grace, agent), (pool_depth, depth_value)],
 preconditions = [
-	condition(knows, [grace, pool_depth], negate = True),
-	condition(at_bottom, [grace], negate = True)],
+	condition(enabled, [grace])],
 results = [
-	condition(at_bottom, [grace]),
-	condition(at_surface, [grace], negate = True)])
+	condition(recorded_depth, [grace, pool_depth])])
+
+operator(dive,
+args = [(grace, agent), (pool_depth, depth_value), (pool_depth1, depth_value)],
+preconditions = [
+	condition(at_pooldepth, [grace, pool_depth1], negate = True),
+	condition(at_pooldepth, [grace, pool_depth]),
+	condition(enabled, [grace])],
+results = [
+	condition(at_pooldepth, [grace, pool_depth1]),
+	condition(at_pooldepth, [grace, pool_depth], negate = True)])
+
+operator(clean,
+args = [(grace, agent)],
+preconditions = [
+	condition(enabled, [grace])],
+results = [
+	condition(cleaned_vines, [grace])])

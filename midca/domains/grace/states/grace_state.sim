@@ -1,9 +1,11 @@
 agent(grace)
 agent(fumin)
-depth_value(pooldepth2)
-depth_value(pooldepth)
-agent(xiaobo)
-agent(catherine)
-agent(mike)
-
-
+depth_value(veryshallow)
+depth_value(shallow)
+depth_value(medium)
+depth_value(deep)
+depth_value(verydeep)
+depth_value(surface)
+depth_value(bottom)
+enabled(grace)
+at_pooldepth(grace, surface)

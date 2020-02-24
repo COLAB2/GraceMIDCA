@@ -9,6 +9,16 @@ import os
 def world_display(world):
     print(world)
 
+def preferApprehend(goal1, goal2):
+    if 'predicate' not in goal1 or 'predicate' not in goal2:
+        return 0
+
+    elif goal1['predicate'] == 'cleaned_vines' and goal2['predicate'] != 'cleaned_vines':
+        return -1
+    elif goal1['predicate'] != 'cleaned_vines' and goal2['predicate'] == 'cleaned_vines':
+        return 1
+
+    return 0
 
 def jshop2_state_from_world(world, STATE_FILE, name = "state"):
     thisDir =  os.path.dirname(os.path.realpath(__file__))
@@ -30,13 +40,12 @@ def jshop2_state_from_world(world, STATE_FILE, name = "state"):
 
     for atom in world.atoms:
 
-        if atom.predicate.name == "knows":
-            f.write("(knows " + atom.args[0].name + " " +  atom.args[1].name + ")\n")
-        elif atom.predicate.name == "at_surface":
-            f.write("(at_surface " + atom.args[0].name + " )\n")
-
-        elif atom.predicate.name == "at_bottom":
-            f.write("(at_bottom " + atom.args[0].name + " )\n")
+        if atom.predicate.name == "at_pooldepth":
+            f.write("(at_pooldepth " + atom.args[0].name + " " +  atom.args[1].name + ")\n")
+        elif atom.predicate.name == "recorded_depth":
+            f.write("(recorded_depth " + atom.args[0].name + " " +  atom.args[1].name + ")\n")
+        elif atom.predicate.name == "enabled":
+            f.write("(enabled " + atom.args[0].name + " )\n")
 
     f.write(")\n")
     f.close()
@@ -68,10 +77,10 @@ def jshop2_tasks_from_goals(goals,pyhopState, STATE_FILE):
         args = [str(arg) for arg in goal.args]
         if args[0] == predicate:
             args.pop(0)
-        if predicate == "knows":
-            f.write("(knows " +  args[0] + " " +  args[1] + ")\n")
-
-
+        if predicate == "communicated_depth":
+            f.write("(communicated_depth " +  args[0] + " " +  args[1] + " " +  args[2] + ")\n")
+        elif predicate == "cleaned_vines":
+            f.write("(cleaned_vines " +  args[0] + ")\n")
         else:
             raise Exception("No task corresponds to predicate " + predicate)
     f.write(" ))))")

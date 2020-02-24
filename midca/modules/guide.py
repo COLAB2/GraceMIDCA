@@ -91,6 +91,22 @@ class MoosGoalInput(UserGoalInput):
         if len(self.mem.get(self.mem.GOAL_GRAPH).getAllGoals()) == 0:
             UserGoalInput.run(self, cycle, verbose = 2)
 
+class GraceGoalAnomaly(base.BaseModule):
+
+    '''
+    MIDCA module that allows users to input goals in a predicate representation when there is no goal in the goal graph.
+    '''
+
+    def run(self, cycle, verbose = 2):
+
+        if self.mem.get(self.mem.ANOMALY) == "slow":
+			print ("Warning :  Anomaly detected")
+			g = goals.Goal(*["grace"], predicate='cleaned_vines')
+			self.mem.get(self.mem.GOAL_GRAPH).insert(g)
+			print("Midca generated a goal : " + str(g))
+			self.mem.set(self.mem.ANOMALY, None)
+
+
 
 
 class SimpleMortarGoalGen(base.BaseModule):

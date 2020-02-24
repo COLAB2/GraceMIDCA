@@ -22,6 +22,7 @@ class MidcaActionSimulator:
                     if verbose >= 2:
                         print "simulating MIDCA action:", action
                     self.world.apply_midca_action(action)
+                    self.mem.add(self.mem.ACTIONS, [])
                 else:
                     if verbose >= 1:
                         print "MIDCA-selected action", action, "illegal in current world state. Skipping"

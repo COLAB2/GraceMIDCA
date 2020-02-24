@@ -50,8 +50,11 @@ def asynch_plan(mem, midcaPlan):
     actions = []
     goals = midcaPlan.goals
     for midcaAction in midcaPlan.actions:
-        if midcaAction.op == "communicatepooldepth":
+        if midcaAction.op == "communicate":
             actions.append(GraceCommunicate(mem, midcaAction))
+
+        elif midcaAction.op == "clean":
+            actions.append(GraceClean(mem, midcaAction))
 
         elif midcaAction.op == "dive":
             actions.append(GraceDive(mem, midcaAction))
@@ -60,6 +63,9 @@ def asynch_plan(mem, midcaPlan):
             actions.append(GraceRaise(mem, midcaAction))
 
         elif midcaAction.op == "sensedepth":
+            actions.append(GraceSense(mem, midcaAction))
+
+        elif midcaAction.op == "recorddepth":
             actions.append(GraceSense(mem, midcaAction))
 
         else:
@@ -231,8 +237,10 @@ class GraceSense(AsynchAction):
     '''
 
     def __init__(self, mem, midcaAction):
-        self.GraceAct = GraceMidcaAct()
+        #self.GraceAct = GraceMidcaAct()
         self.mem = mem
+        self.action = midcaAction
+        self.time = None
         self.skip = True
         self.complete = False
         executeAction = lambda mem, midcaAction, status: self.implement_action()
@@ -241,20 +249,42 @@ class GraceSense(AsynchAction):
                               completionCheck, True)
 
     def implement_action(self):
+        self.time = midcatime.now()
         pass
 
     def check_confirmation(self):
-        # world = self.mem.get(self.mem.STATES)[-1]
-        if not self.skip:
-            # check if the depth is in memory
-            return True
+        if self.time:
+            if (midcatime.now() - self.time) >= 10:
+                if self.action.args[1] == "veryshallow":
+                    self.mem.set(self.mem.ANOMALY, "slow")
+                return True
+        return False
 
-        # not usefull code for now
-        #	for atom in world.atoms:
-        #		if atom.predicate.name == "knows" or atom.predicate.name == "at_surface" or atom.predicate.name == "at_bottom":
-        #			return True
+class GraceClean(AsynchAction):
+    '''
+    Grace action that cleans itself
+    '''
 
-        self.skip = False
+    def __init__(self, mem, midcaAction):
+        #self.GraceAct = GraceMidcaAct()
+        self.mem = mem
+        self.action = midcaAction
+        self.time = None
+        self.skip = True
+        self.complete = False
+        executeAction = lambda mem, midcaAction, status: self.implement_action()
+        completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
+        AsynchAction.__init__(self, mem, midcaAction, executeAction,
+                              completionCheck, True)
+
+    def implement_action(self):
+        self.time = midcatime.now()
+        pass
+
+    def check_confirmation(self):
+        if self.time:
+            if (midcatime.now() - self.time) >= 10:
+                return True
         return False
 
 
@@ -264,8 +294,9 @@ class GraceCommunicate(AsynchAction):
     '''
 
     def __init__(self, mem, midcaAction):
-        self.GraceAct = GraceMidcaAct()
+        #self.GraceAct = GraceMidcaAct()
         self.mem = mem
+        self.time = None
         self.skip = True
         self.depth = None
         self.complete = False
@@ -275,15 +306,13 @@ class GraceCommunicate(AsynchAction):
                               completionCheck, True)
 
     def implement_action(self):
+        self.time = midcatime.now()
         pass
 
     def check_confirmation(self):
-        world = self.mem.get(self.mem.STATES)[-1]
-        if not self.skip:
-            for atom in world.atoms:
-                if atom.predicate.name == "knows" and atom.args[0].name == "fumin":
-                    return True
-        self.skip = False
+        if self.time:
+            if (midcatime.now() - self.time) >= 10:
+                return True
         return False
 
 
@@ -293,8 +322,9 @@ class GraceRaise(AsynchAction):
     '''
 
     def __init__(self, mem, midcaAction):
-        self.GraceAct = GraceMidcaAct()
+        #self.GraceAct = GraceMidcaAct()
         self.mem = mem
+        self.time = None
         self.complete = False
         executeAction = lambda mem, midcaAction, status: self.implement_action()
         completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
@@ -302,12 +332,12 @@ class GraceRaise(AsynchAction):
                               completionCheck, True)
 
     def implement_action(self):
+        self.time = midcatime.now()
         pass
 
     def check_confirmation(self):
-        world = self.mem.get(self.mem.STATES)[-1]
-        for atom in world.atoms:
-            if atom.predicate.name == "at_surface":
+        if self.time:
+            if (midcatime.now() - self.time) >= 10:
                 return True
         return False
 
@@ -318,8 +348,9 @@ class GraceDive(AsynchAction):
     '''
 
     def __init__(self, mem, midcaAction):
-        self.GraceAct = GraceMidcaAct()
+        #self.GraceAct = GraceMidcaAct()
         self.mem = mem
+        self.time = None
         self.complete = False
         executeAction = lambda mem, midcaAction, status: self.implement_action()
         completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
@@ -327,11 +358,11 @@ class GraceDive(AsynchAction):
                               completionCheck, True)
 
     def implement_action(self):
+        self.time = midcatime.now()
         pass
 
     def check_confirmation(self):
-        world = self.mem.get(self.mem.STATES)[-1]
-        for atom in world.atoms:
-            if atom.predicate.name == "at_bottom":
+        if self.time:
+            if (midcatime.now() - self.time) >= 10:
                 return True
         return False

@@ -53,6 +53,9 @@ class Memory:
 	EXPLANATION = "__explanation"
 	EXPLANATION_VAL = "__explanation_val"
 
+	#GRACE
+	ANOMALY = "__anomaly"
+
 
     	#Goal Tranformation
     	CL_TREE = "__class heirarchy tree"
