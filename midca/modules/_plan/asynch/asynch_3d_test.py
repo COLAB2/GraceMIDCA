@@ -237,7 +237,7 @@ class GraceSense(AsynchAction):
     '''
 
     def __init__(self, mem, midcaAction):
-        #self.GraceAct = GraceMidcaAct()
+        self.GraceAct = GraceMidcaAct()
         self.mem = mem
         self.action = midcaAction
         self.time = None
@@ -250,6 +250,8 @@ class GraceSense(AsynchAction):
 
     def implement_action(self):
         self.time = midcatime.now()
+        depth = self.GraceAct.senseDepth()
+
         pass
 
     def check_confirmation(self):
@@ -294,7 +296,7 @@ class GraceCommunicate(AsynchAction):
     '''
 
     def __init__(self, mem, midcaAction):
-        #self.GraceAct = GraceMidcaAct()
+        self.GraceAct = GraceMidcaAct()
         self.mem = mem
         self.time = None
         self.skip = True
@@ -307,12 +309,18 @@ class GraceCommunicate(AsynchAction):
 
     def implement_action(self):
         self.time = midcatime.now()
+        self.depth = self.mem.get(self.mem.SENSE_DEPTH)
+        if self.depth:
+            self.GraceAct.communicateDepth(self.depth)
+        else:
+            global FAILED
+            return FAILED
         pass
 
     def check_confirmation(self):
-        if self.time:
-            if (midcatime.now() - self.time) >= 10:
-                return True
+        """
+        get the feedback to check confirmation
+        """
         return False
 
 
@@ -323,6 +331,7 @@ class GraceRaise(AsynchAction):
 
     def __init__(self, mem, midcaAction):
         #self.GraceAct = GraceMidcaAct()
+        self.action = midcaAction
         self.mem = mem
         self.time = None
         self.complete = False
@@ -333,7 +342,19 @@ class GraceRaise(AsynchAction):
 
     def implement_action(self):
         self.time = midcatime.now()
-        pass
+        """
+        Implement the grace raise action
+        """
+        if self.action.args[1] == "shallow":
+            self.GraceAct.rise()
+        elif self.action.args[1] == "veryshallow":
+            self.GraceAct.rise()
+        elif self.action.args[1] == "medium":
+            self.GraceAct.rise()
+        elif self.action.args[1] == "deep":
+            self.GraceAct.rise()
+        elif self.action.args[1] == "verydeep":
+            self.GraceAct.rise()
 
     def check_confirmation(self):
         if self.time:
@@ -349,6 +370,7 @@ class GraceDive(AsynchAction):
 
     def __init__(self, mem, midcaAction):
         #self.GraceAct = GraceMidcaAct()
+        self.action = midcaAction
         self.mem = mem
         self.time = None
         self.complete = False
@@ -359,7 +381,19 @@ class GraceDive(AsynchAction):
 
     def implement_action(self):
         self.time = midcatime.now()
-        pass
+        """
+        Implement the grace dive action
+        """
+        if self.action.args[1] == "shallow":
+            self.GraceAct.dive()
+        elif self.action.args[1] == "veryshallow":
+            self.GraceAct.dive()
+        elif self.action.args[1] == "medium":
+            self.GraceAct.dive()
+        elif self.action.args[1] == "deep":
+            self.GraceAct.dive()
+        elif self.action.args[1] == "verydeep":
+            self.GraceAct.dive()
 
     def check_confirmation(self):
         if self.time:
