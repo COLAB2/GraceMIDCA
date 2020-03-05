@@ -99,12 +99,20 @@ class GraceGoalAnomaly(base.BaseModule):
 
     def run(self, cycle, verbose = 2):
 
-        if self.mem.get(self.mem.ANOMALY) == "slow":
-			print ("Warning :  Anomaly detected")
-			g = goals.Goal(*["grace"], predicate='cleaned_vines')
-			self.mem.get(self.mem.GOAL_GRAPH).insert(g)
-			print("Midca generated a goal : " + str(g))
-			self.mem.set(self.mem.ANOMALY, None)
+        depth = self.mem.get(self.mem.DEPTH)
+        if depth:
+            for atom in self.world.atoms:
+                if atom.predicate.name == "atlocation":
+                    if atom.args[1].name == depth :
+                        return True
+                    else:
+                        print ("Warning :  Anomaly detected")
+                        g = goals.Goal(*["grace"], predicate='cleaned_vines')
+                        self.mem.get(self.mem.GOAL_GRAPH).insert(g)
+                        print("Midca generated a goal : " + str(g))
+                        return 
+
+
 
 
 

@@ -1,0 +1,182 @@
+Hi Demetris, how are you? please let me know when you are ready
+Hello
+
+Let me pull the code from the github. Can you please direct me to the GraceMIDCA folder from terminal
+
+Yes
+
+I will take it from here
+
+
+
+Can i see the code in the editor 
+
+Give me a second. Which files?
+
+midca/modules/_plan/asynch_3d_test.py
+
+Thank you ! Give me a sec
+
+------------------------------------------
+
+self.GraceAct.rise() 
+
+can we give arguments to this function call
+so that it can raise to certain height or so
+
+Not this one. We have a program that implements a 
+controller to do this though. Alternatively we
+can use the percieve to monitor the depth
+
+Previously we only have actions to go to bottom and
+surface right but now we divided them into
+very_shallow, shallow, medium, deep and verydeep
+suppose if we want grace to rise to medium, how
+can we implement this action? let say medium
+depth can be from 20 units to 30 units 
+
+So the script I mention can be called with command
+line argument 25 units and the controller will
+cause grace to move in such a way that the depth
+will be converge to 25 units + or - x units.
+If we want to implement directly in MIDCA we can 
+do 
+if GraceSense.Depth()>25 units
+self.GraceAct.rise()
+if GraceSense.Depth()<25 units
+self.GraceAct.dive()
+
+oh k ! but there is a problem here with that imple
+mentation. midca cannot detect an anomaly. Right 
+now it has two actions
+dive followed by sense
+if we want grace to dive to 25 units, we 
+estimate it might take some amount of time
+and sense action senses the depth, if its not
+at 25 units then it's an anomaly. midca would
+generate a goal through reasoning. If we apply
+if GraceSense.Depth()>25 units
+self.GraceAct.rise()
+if GraceSense.Depth()<25 units
+self.GraceAct.dive()
+
+this implementation, we will be in a loop if
+there is an anomaly
+
+ok. The problem with the other implementation is that
+the controller specifies an amount of time to 
+hold at a depth and the rise. This is because we 
+always want to come back up after reaching our desired
+depth. It would make more sense to have one dive and
+rise command, but monitor the progress during
+the descent and ascent rather than calling seperate
+dive commands for each intermediate depth.
+
+For instance, say we want to dive to medium depth,
+take a measuremeant, and report it. We would command
+to dive to medium, but allong the way, we would expect to
+pass through shallow and very shallow, but not deep.
+
+cool ! so you are saying that you can make grace dive
+to a certain depth right?
+
+Yes
+
+can you do it with a single command?
+
+From the python perspective, it would be a single
+command, but it would actually be calling a program
+that continously runs until it completion.
+
+
+Thats fine, I would want it like that, midca just
+gives an action to dive to certain depth, but it
+does not know whether it reached or not waits for
+some time and the sense action senses the depth
+to check if it reached or not. If it's not it is
+an anomaly else not. clear?
+
+Yes. I imagine that it is a problem if the program
+causes grace to return to the surface automatically 
+though?
+
+So, there is something in the program that autom
+atically makes grace to rise after it reaches
+certain depth.
+
+Yes. The progam executes as:
+go to depth
+hold depth for x seconds
+return to surface
+
+can we modify x seconds? I mean can we give x as
+a big number so that it wont return 
+
+Yes, but if you do this, a ris command would not work
+until x seconds has passed becuse the program will
+actively control the actuator. We can implement 
+if GraceSense.Depth()>25 units
+self.GraceAct.rise()
+if GraceSense.Depth()<25 units
+self.GraceAct.dive()
+
+as an action that runs in a separte thread from a function
+call of GraceAct.
+It would be much easier I think.
+
+sure, that might work.
+
+Will you be able to write the code to handle that?
+
+Yes. It will take around 20 minutes, but I have class in
+10. We can jus write it as sudo code for now.
+
+sure. I will just write a sudo code, and you
+can complete it after the class, we can meet
+again tomorrow to test it. what do you think?
+
+Yes. That works. Can you also leave in this text file
+any other functions or functionality that you need for this
+example?
+
+sure I will. Right now even I have to go somewhere,
+but in 30 min or 45 min I will be back and work on
+this.
+
+Ok
+
+----------------------------------------------
+Please implement the comments in 
+GraceDive.implement function
+GraceRaise.implement function
+
+that should be it for today. I will work on 
+GraceSense to create the world and we can test
+the code tomorrow 
+
+---------------------------------------------
+implemented the function gotToDepth(x)
+which covers both actions. x is the taget depth
+in meters. This will continously try to set the 
+depth to x untill you stop it by calling the function
+stopRegulation(). They can be implemented as below.
+
+GraceAct.stopRegulation()
+GraceAct.gotToDepth(5)
+
+I have already added one instance on line 360 of
+asynch_3d_test.py
+---------------------------------------------
+I have two questions
+1. How to make grace go to bottom?
+   can you write the code in line 452.
+   goToDepth(maxDepth) or Dive(). Also, remember the depth is in
+   meters so you have to convert from the units you use to meters.
+
+2. How to get feedback for the message reception?
+   please fill the code in line 333
+   done same way as before.
+
+After this, we can test the code tomorrow.
+
+

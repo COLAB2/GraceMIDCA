@@ -1,0 +1,54 @@
+Hi
+
+Hi, This might be a short meeting. So I have an idea about making the robot working with a 
+single dive command from your end and it can be multiple dives from our end. I will modify the planner 
+accordingly and will get back to you on that. Sounds good?
+
+Yes. do you mind sharing the idea?
+
+Sure, I am planning to move the sense actions to perceive and the action acknowledgement will be calculated
+from the average speed of the robot. Does this make sense to you?
+
+Yes. That seems better than basing the acknowledge of time.
+
+Great! I have a few questions though, What is the average speed of the robot?
+
+That is something that will change depending on the control input/actions. It is not a constant, but can
+be calculated from numerically differentiating the depth measuremeants.
+
+So, is there a minimum and a maximum? 
+
+Minimun is 0 and there is a maximum, but I do not know it for sure. We estimate it to be around .5 meters
+per second, but that is a very rough estimate.
+
+That is fine, I just wanted to get an idea. You do not have a sonar sensor on board right
+No, we do not.
+
+Okay, If there is an obstacle near by grace might not be able to detect it right?
+
+It will not be able to because it currently has no sensors capable of obstacle detection.
+
+Okay, What is the data from algae sensors used for? Is it in anyway related to a hotspot existence?
+
+Not for this project, but it is used to measure the concentration of algae in the water. So it could be
+used to determine a hotspot if we are looking for algae.
+
+Great! and sorry for the cursor. I think I asked this question yesterday, Can the fish swim backwards?
+
+It can glide backwards, but not swim (flapping tail to move).  
+
+
+Okay, What else can the fish do if it is stuck in vines?
+
+It does not have anything specificaly for vines, but the actions that the gliders and fish have in general
+are very simple. 
+1. Change bouyancy to sink or float
+2. Picth up or down to move forward or backward
+The fish can also turn the tail to steer or flap it to swim foward
+
+Okay. Thanks! For the new example, the expectations will arise from the world model rather than actions. 
+I hope that might make anomaly detection a little more independant than the current one.
+
+ok. No problem. Let me know if you need anything else.
+
+Sure! I am good for now. I will let you know if I have anymore questions.

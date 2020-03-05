@@ -4,6 +4,7 @@ import traceback
 import math
 import copy
 import numpy as np
+from GraceAct import GraceMidcaAct
 
 try:
     from geometry_msgs.msg import PointStamped
@@ -66,7 +67,7 @@ def asynch_plan(mem, midcaPlan):
             actions.append(GraceSense(mem, midcaAction))
 
         elif midcaAction.op == "recorddepth":
-            actions.append(GraceSense(mem, midcaAction))
+            actions.append(GraceRecord(mem, midcaAction))
 
         else:
             if verbose >= 1:
@@ -186,49 +187,36 @@ class AsynchAction:
         return str(self.midcaAction)
 
 
-class GraceMidcaAct():
-    def __init__(self):
-        gracePath = '/home/pi/Desktop/Grace_Control'
-        self.bottomDepth = 0
-        self.gracePath = gracePath
-        import sys
-        sys.path.insert(0, gracePath)
-        import GliderFunIPC
-        self.interface = GliderFunIPC.GraceFun()
 
-    def communicateDepth(self, depth):  # returns boolean telling if depth was sent out over xbee
-        grace = self.interface
-        return grace.sendXbeeMsg("Depth:" + str(depth))
 
-    def dive(self):  # fills robot tank with water to make it sink
-        grace = self.interface
-        # grace.movePump(4)
-        grace.moveMass(4)
+class GraceRecord(AsynchAction):
+    '''
+    Grace action that senses depth
+    '''
 
-    def rise(self):  # expells water from robot to make it float
-        grace = self.interface
-        # grace.movePump(98)
-        grace.moveMass(98)
+    def __init__(self, mem, midcaAction):
+        self.GraceAct = GraceMidcaAct()
+        self.mem = mem
+        self.action = midcaAction
+        self.time = None
+        self.skip = True
+        self.complete = False
+        executeAction = lambda mem, midcaAction, status: self.implement_action()
+        completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
+        AsynchAction.__init__(self, mem, midcaAction, executeAction,
+                              completionCheck, True)
 
-    def senseDepth(self):  # reads the pressure sensor and converts it to depth in meters
-        grace = self.interface
-        return grace.readDepth()
+    def implement_action(self):
+        self.time = midcatime.now()
+        depth = self.GraceAct.senseDepth()
+        self.mem.set(self.mem.SENSE_DEPTH, depth)
+        pass
 
-    def checkCommunicationAck(self):  # read a file output by program chechinkg for surface and return true or false
-        # sending $%GO%$ over xbee will cause a file "Next_Dive_GO" to be produce with 1 in line one
-        Acknowleged = False
-        gracePath = self.gracePath + "/"
-        try:
-            f = open(gracePath + "Next_Dive_GO", 'r')
-            Acknowleged = (1 == int(f.readline()))
-            f.close()
-            if Acknowleged:
-                f = open(gracePath + "Next_Dive_GO", 'w')
-                f.write("0")
-                f.close()
-        except:
-            return False
-        return Acknowleged
+    def check_confirmation(self):
+        if self.time:
+            if (midcatime.now() - self.time) >= 10:
+                return True
+        return False
 
 
 class GraceSense(AsynchAction):
@@ -251,14 +239,35 @@ class GraceSense(AsynchAction):
     def implement_action(self):
         self.time = midcatime.now()
         depth = self.GraceAct.senseDepth()
-
+        
+        if (depth <= 10):
+            self.mem.set(self.mem.DEPTH, "surface")
+        
+        elif (depth >= 10 and depth <= 20):
+            # depth is at surface
+            self.mem.set(self.mem.DEPTH, "shallow")
+            
+        elif ((depth >= 20 and depth <= 40):
+            # depth is at shallow
+            self.mem.set(self.mem.DEPTH, "veryshallow")
+            
+        elif ((depth >= 40 and depth <= 60):
+            self.mem.set(self.mem.DEPTH, "medium")
+        
+        elif ((depth >= 60 and depth <= 80):
+            self.mem.set(self.mem.DEPTH, "deep")
+        
+        elif ((depth >= 80 and depth <= 100):
+            self.mem.set(self.mem.DEPTH, "verydeep")
+            
+        else:
+            self.mem.set(self.mem.DEPTH, "bottom")
+            
         pass
 
     def check_confirmation(self):
         if self.time:
             if (midcatime.now() - self.time) >= 10:
-                if self.action.args[1] == "veryshallow":
-                    self.mem.set(self.mem.ANOMALY, "slow")
                 return True
         return False
 
@@ -268,7 +277,7 @@ class GraceClean(AsynchAction):
     '''
 
     def __init__(self, mem, midcaAction):
-        #self.GraceAct = GraceMidcaAct()
+        self.GraceAct = GraceMidcaAct()
         self.mem = mem
         self.action = midcaAction
         self.time = None
@@ -317,11 +326,21 @@ class GraceCommunicate(AsynchAction):
             return FAILED
         pass
 
-    def check_confirmation(self):
-        """
-        get the feedback to check confirmation
-        """
-        return False
+    def check_confirmation(self):# read a file output by program chechinkg for surface and return true or false
+        # sending $%GO%$ over xbee will cause a file "Next_Dive_GO" to be produce with 1 in line one
+        Acknowleged = False
+        gracePath = self.gracePath+"/"
+        try:
+            f = open(gracePath + "Next_Dive_GO", 'r')
+            Acknowleged = (1 == int(f.readline()))
+            f.close()
+            if Acknowleged:
+                f=open(gracePath+"Next_Dive_GO",'w')
+                f.write("0")
+                f.close()
+        except:
+            return False
+        return Acknowleged
 
 
 class GraceRaise(AsynchAction):
@@ -330,7 +349,7 @@ class GraceRaise(AsynchAction):
     '''
 
     def __init__(self, mem, midcaAction):
-        #self.GraceAct = GraceMidcaAct()
+        self.GraceAct = GraceMidcaAct()
         self.action = midcaAction
         self.mem = mem
         self.time = None
@@ -345,21 +364,52 @@ class GraceRaise(AsynchAction):
         """
         Implement the grace raise action
         """
-        if self.action.args[1] == "shallow":
-            self.GraceAct.rise()
-        elif self.action.args[1] == "veryshallow":
-            self.GraceAct.rise()
-        elif self.action.args[1] == "medium":
-            self.GraceAct.rise()
-        elif self.action.args[1] == "deep":
-            self.GraceAct.rise()
-        elif self.action.args[1] == "verydeep":
-            self.GraceAct.rise()
+        
+        self.GraceAct.stopRegulation()
+
+        if self.action.args[2] == "surface":
+            """
+                implement the action to be at surface
+            """
+            # how to know if it is at the surface
+            self.GraceAct.gotToDepth(0)
+            
+        elif self.action.args[2] == "shallow":
+            """
+                Implement the thread to raise between 10 and 20 units
+            """
+            self.GraceAct.gotToDepth(15)
+            
+        elif self.action.args[2] == "veryshallow":
+            """
+                Implement the thread to raise between 20 and 40 units
+            """
+            self.GraceAct.gotToDepth(30)
+            
+        elif self.action.args[2] == "medium":
+            """
+                Implement the thread to raise between 40 and 60 units
+            """
+            self.GraceAct.gotToDepth(50)
+            
+        elif self.action.args[2] == "deep":
+            """
+                Implement the thread to raise between 60 and 80 units
+            """
+            self.GraceAct.gotToDepth(70)
+            
+        elif self.action.args[2] == "verydeep":
+            """
+                Implement the thread to raise between 80 and 100 units
+            """
+            self.GraceAct.gotToDepth(90)
 
     def check_confirmation(self):
         if self.time:
             if (midcatime.now() - self.time) >= 10:
+                self.mem.set(self.mem.DEPTH, None)
                 return True
+                
         return False
 
 
@@ -369,7 +419,7 @@ class GraceDive(AsynchAction):
     '''
 
     def __init__(self, mem, midcaAction):
-        #self.GraceAct = GraceMidcaAct()
+        self.GraceAct = GraceMidcaAct()
         self.action = midcaAction
         self.mem = mem
         self.time = None
@@ -381,22 +431,50 @@ class GraceDive(AsynchAction):
 
     def implement_action(self):
         self.time = midcatime.now()
-        """
-        Implement the grace dive action
-        """
-        if self.action.args[1] == "shallow":
-            self.GraceAct.dive()
-        elif self.action.args[1] == "veryshallow":
-            self.GraceAct.dive()
-        elif self.action.args[1] == "medium":
-            self.GraceAct.dive()
-        elif self.action.args[1] == "deep":
-            self.GraceAct.dive()
-        elif self.action.args[1] == "verydeep":
-            self.GraceAct.dive()
+        
+        self.GraceAct.stopRegulation()
+            
+        elif self.action.args[2] == "shallow":
+            """
+                Implement the thread to dive between 10 and 20 units
+            """
+            self.GraceAct.gotToDepth(15) #x in meters, so units need to be converted to meters
+            
+        elif self.action.args[2] == "veryshallow":
+            """
+                Implement the thread to dive between 20 and 40 units
+            """
+            self.GraceAct.gotToDepth(30)
+            
+        elif self.action.args[2] == "medium":
+            """
+                Implement the thread to dive between 40 and 60 units
+            """
+            self.GraceAct.gotToDepth(50)
+        elif self.action.args[2] == "deep":
+            """
+                Implement the thread to dive between 60 and 80 units
+            """
+            self.GraceAct.gotToDepth(70)
+        elif self.action.args[2] == "verydeep":
+            """
+                Implement the thread to dive between 80 and 100 units
+            """
+            self.GraceAct.gotToDepth(90)
+            
+        elif self.action.args[2] == "bottom":
+            """
+                Dive action to bottom
+            """
+            self.GraceAct.Dive()
+            #self.GraceAct.gotToDepth(maxDepth)
+            pass
+        
+        
 
     def check_confirmation(self):
         if self.time:
             if (midcatime.now() - self.time) >= 10:
+                self.mem.set(self.mem.DEPTH, None)
                 return True
         return False
