@@ -588,69 +588,55 @@ class GraceObserver(base.BaseModule):
         world = self.observe()
         if not world:
             raise Exception("World observation failed.")
-        
-        self.mem.add(self.mem.STATES, world)
         '''
-        The following code gets the depth and the acknowledgement from grace
-        to create states for the world.
-        For example : Should comeback and complete this later
+        The following code gets the depth to create observed states for the world.
         '''
+        depth = self.GracePerception.senseDepth()
+
         states = ""
-        if True:#try:
-            # write the function to aquire depth and acknowledgement
-            GP = self.GracePerception
+        if (depth <= 5):
+            states += "at_pooldepth(grace, surface)\n"
 
-            atSurface = GP.checkAtSurfaceDepth()  # checks if depth is close to surface depth
-            if not self.runningBottomCheck and not atSurface:  # only check for bottom if we are not already doing it
-                GP.beginBottomCheck()
-                self.runningBottomCheck = True
+        elif (depth >= 5 and depth <= 20):
+            # depth is at surface
+            states += "at_pooldepth(grace, veryshallow)\n"
 
-            acknowledge = GP.checkCommunicationAck()  # check if we have recieved acknowledgment from fumin
-            atBottom = GP.checkAtBottom()  # check if we have determined that we are at the bottom
-            if atSurface or acknowledge:
-                states += "at_surface(grace)\n"
+        elif (depth >= 20 and depth <= 40):
+            # depth is at veryshallow
+            states += "at_pooldepth(grace, shallow)\n"
 
-                # similarly for bottom
-            elif atBottom:
-                states += "at_bottom(grace)\n"
-                self.runningBottomCheck = False
-                # for pool depth (there can be multiple pooldepths)
-                # we should discuss on how many pool depths we should have
+        elif (depth >= 40 and depth <= 60):
+            states += "at_pooldepth(grace, medium)\n"
 
-            if acknowledge:
-                states += "knows(fumin, pooldepth)\n"
+        elif (depth >= 60 and depth <= 80):
+            states += "at_pooldepth(grace, deep)\n"
 
+        elif (depth >= 80 and depth <= 100):
+            states += "at_pooldepth(grace, verydeep)\n"
 
+        else:
+            states += "at_pooldepth(grace, bottom)\n"
 
-
-
-        else:#except:
-            # if there is any failure to acess the grace functions, lets
-            # use this block (to be completed later)
-            pass
-
-        # remove previous states related to at_surface, at_bottom and knows 
+        # remove previous states related to at_pooldepth
         # because grace can percieve and update them
-        world = copy.deepcopy(self.world)
-        for atom in world.atoms:
-                    if atom.predicate.name == "at_surface" \
-						or atom.predicate.name == "at_bottom" \
-						or atom.predicate.name == "knows":
-                        self.world.atoms.remove(atom)
+        world_copy = copy.deepcopy(self.world)
+        for atom in world_copy.atoms:
+                if atom.predicate.name == "at_pooldepth":
+                        world.atoms.remove(atom)
                         
                         
         # this is to update the world into memory
         if not states == "":
             if verbose >= 1:
                 print(states)
-            stateread.apply_state_str(self.world, states)
-            self.mem.add(self.mem.STATES, self.world)
+            stateread.apply_state_str(world, states)
+            self.mem.add(self.mem.OBSERVED_STATES, world)
 
-        states = self.mem.get(self.mem.STATES)
+        states = self.mem.get(self.mem.OBSERVED_STATES)
         if len(states) > 400:
             # print "trimmed off 200 old stale states"
             states = states[200:]
-            self.mem.set(self.mem.STATES, states)
+            self.mem.set(self.mem.OBSERVED_STATES, states)
         # End Memory Usage Optimization
 
         if verbose >= 1:

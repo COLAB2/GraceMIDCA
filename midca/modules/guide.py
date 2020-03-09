@@ -98,24 +98,25 @@ class GraceGoalAnomaly(base.BaseModule):
     '''
 
     def run(self, cycle, verbose = 2):
+		observed_world = self.mem.get(self.mem.OBSERVED_STATES)[-1]
+		observed_state = None
+		expected_state = None
 
-        depth = self.mem.get(self.mem.DEPTH)
-        if depth:
-            for atom in self.world.atoms:
-                if atom.predicate.name == "atlocation":
-                    if atom.args[1].name == depth :
-                        return True
-                    else:
-                        print ("Warning :  Anomaly detected")
-                        g = goals.Goal(*["grace"], predicate='cleaned_vines')
-                        self.mem.get(self.mem.GOAL_GRAPH).insert(g)
-                        print("Midca generated a goal : " + str(g))
-                        return 
+		# expectations
+		for atom in self.world.atoms:
+			if atom.predicate.name == "at_pooldepth":
+				expected_state = atom
 
+		# observations
+		for atom in observed_world.atoms:
+			if atom.predicate.name == "at_pooldepth":
+				observed_state = atom
 
-
-
-
+		if expected_state.args[1].name == observed_state.args[1].name:
+			print ("Warning :  Anomaly detected")
+			g = goals.Goal(*["grace"], predicate='Cleaned_Remora')
+			self.mem.get(self.mem.GOAL_GRAPH).insert(g)
+			print("Midca generated a goal : " + str(g))
 
 class SimpleMortarGoalGen(base.BaseModule):
     '''

@@ -14,33 +14,29 @@
       <file leaf-file-name="perceive.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/perceive.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="236" column="29" lean-forward="false" selection-start-line="236" selection-start-column="29" selection-end-line="236" selection-end-column="29" />
+            <state relative-caret-position="1164">
+              <caret line="234" column="29" lean-forward="true" selection-start-line="234" selection-start-column="29" selection-end-line="234" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JSHOP.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/_plan/jShop/JSHOP.py">
+      <file leaf-file-name="evaluate.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/evaluate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
-              <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="756">
+              <caret line="83" column="12" lean-forward="false" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="57" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="act.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/act.py">
+      <file leaf-file-name="intend.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/intend.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="13" column="24" lean-forward="false" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="14352">
+              <caret line="627" column="43" lean-forward="false" selection-start-line="627" selection-start-column="30" selection-end-line="627" selection-end-column="43" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -48,43 +44,82 @@
       <file leaf-file-name="planning.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/planning.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10879">
-              <caret line="483" column="35" lean-forward="false" selection-start-line="483" selection-start-column="35" selection-end-line="483" selection-end-column="35" />
+            <state relative-caret-position="271">
+              <caret line="466" column="34" lean-forward="false" selection-start-line="466" selection-start-column="25" selection-end-line="466" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="grace_demo.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/grace_demo.py">
+      <file leaf-file-name="graceDomain.shp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domains/grace/plan/graceDomain.shp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="943">
-              <caret line="48" column="51" lean-forward="false" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="51" />
+            <state relative-caret-position="529">
+              <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="asynch_3d_test.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/modules/_plan/asynch/asynch_3d_test.py">
+      <file leaf-file-name="graceProblem.shp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domains/grace/plan/graceProblem.shp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="387" column="31" lean-forward="false" selection-start-line="387" selection-start-column="31" selection-end-line="387" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="184">
+              <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="asynch_3d.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="asynch_3d.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/_plan/asynch/asynch_3d.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="320" column="8" lean-forward="false" selection-start-line="320" selection-start-column="8" selection-end-line="320" selection-end-column="28" />
+            <state relative-caret-position="377">
+              <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="worldsim.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/worldsim/worldsim.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="460" column="28" lean-forward="true" selection-start-line="460" selection-start-column="28" selection-end-line="460" selection-end-column="28" />
+              <folding>
+                <element signature="e#26#247#0" expanded="false" />
+                <element signature="e#264#768#0" expanded="false" />
+                <element signature="e#785#1926#0" expanded="false" />
+                <element signature="e#1949#2494#0" expanded="false" />
+                <element signature="e#2513#3253#0" expanded="false" />
+                <element signature="e#3275#4143#0" expanded="false" />
+                <element signature="e#4164#6848#0" expanded="false" />
+                <element signature="e#6865#9416#0" expanded="false" />
+                <element signature="e#9439#11763#0" expanded="false" />
+                <element signature="e#11778#12548#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="grace.sim" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domains/grace/domains/grace.sim">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="grace_state.sim" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domains/grace/states/grace_state.sim">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -114,6 +149,7 @@
       <find>jshop</find>
       <find>JSHOPPlanner</find>
       <find>args</find>
+      <find>GraceSense</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -123,7 +159,6 @@
         <option value="$PROJECT_DIR$/examples/cogsci_demo_ma.py" />
         <option value="$PROJECT_DIR$/modules/_xp_goal/parser.py" />
         <option value="$PROJECT_DIR$/modules/assess.py" />
-        <option value="$PROJECT_DIR$/modules/evaluate.py" />
         <option value="$PROJECT_DIR$/modules/planning.py" />
         <option value="$PROJECT_DIR$/examples/cogsci_demo_mortar_construction.py" />
         <option value="$PROJECT_DIR$/examples/cogsci_demo_mortar_goal_transforms.py" />
@@ -142,13 +177,15 @@
         <option value="$PROJECT_DIR$/modules/_plan/jShop/JSHOP.py" />
         <option value="$PROJECT_DIR$/modules/act.py" />
         <option value="$PROJECT_DIR$/modules/_plan/asynch/asynch_3d_test.py" />
+        <option value="$PROJECT_DIR$/worldsim/worldsim.py" />
+        <option value="$PROJECT_DIR$/modules/evaluate.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="810" />
+    <option name="height" value="806" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -165,6 +202,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -176,6 +214,19 @@
               <item name="midca" type="b2602c69:ProjectViewProjectNode" />
               <item name="midca" type="462c0819:PsiDirectoryNode" />
               <item name="domains" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="midca" type="b2602c69:ProjectViewProjectNode" />
+              <item name="midca" type="462c0819:PsiDirectoryNode" />
+              <item name="domains" type="462c0819:PsiDirectoryNode" />
+              <item name="grace" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="midca" type="b2602c69:ProjectViewProjectNode" />
+              <item name="midca" type="462c0819:PsiDirectoryNode" />
+              <item name="domains" type="462c0819:PsiDirectoryNode" />
+              <item name="grace" type="462c0819:PsiDirectoryNode" />
+              <item name="plan" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="midca" type="b2602c69:ProjectViewProjectNode" />
@@ -200,19 +251,11 @@
               <item name="_plan" type="462c0819:PsiDirectoryNode" />
               <item name="asynch" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="midca" type="b2602c69:ProjectViewProjectNode" />
-              <item name="midca" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="_plan" type="462c0819:PsiDirectoryNode" />
-              <item name="jShop" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -273,7 +316,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="806" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="806" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26497534" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -317,16 +360,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/examples/cogsci_demo.py" />
-    <entry file="file://$PROJECT_DIR$/modules/_xp_goal/parser.py" />
-    <entry file="file://$PROJECT_DIR$/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/cogsci_demo_ma.py" />
     <entry file="file://$PROJECT_DIR$/modules/assess.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -376,13 +409,6 @@
     <entry file="file://$PROJECT_DIR$/examples/predicateworld.py" />
     <entry file="file://$PROJECT_DIR$/modules/_xp_goal/frame.py" />
     <entry file="file://$PROJECT_DIR$/modules/_xp_goal/parser.py" />
-    <entry file="file://$PROJECT_DIR$/modules/intend.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9360">
-          <caret line="627" column="43" lean-forward="false" selection-start-line="627" selection-start-column="30" selection-end-line="627" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/cogsci_demo_mortar_construction.py" />
     <entry file="file://$PROJECT_DIR$/examples/cogsci_demo_mortar_goal_transforms.py" />
     <entry file="file://$PROJECT_DIR$/examples/cogsci_demo_ma.py" />
@@ -403,13 +429,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/chicken_run copy.py" />
     <entry file="file://$PROJECT_DIR$/examples/chicken_run.py" />
-    <entry file="file://$PROJECT_DIR$/modules/evaluate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8055">
-          <caret line="539" column="4" lean-forward="false" selection-start-line="539" selection-start-column="4" selection-end-line="539" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-650">
@@ -444,13 +463,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/domains/moos_domain/domain/moos_domain.sim" />
-    <entry file="file://$PROJECT_DIR$/worldsim/worldsim.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="677" column="8" lean-forward="true" selection-start-line="677" selection-start-column="8" selection-end-line="677" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/guide.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1033">
@@ -468,7 +480,7 @@
         <state relative-caret-position="1173">
           <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -483,14 +495,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/planning.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10879">
-          <caret line="483" column="35" lean-forward="false" selection-start-line="483" selection-start-column="35" selection-end-line="483" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/grace_demo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="943">
@@ -499,28 +503,103 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modules/_plan/asynch/asynch_3d_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="387" column="31" lean-forward="false" selection-start-line="387" selection-start-column="31" selection-end-line="387" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#31#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domains/grace/states/grace_state.sim">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domains/grace/domains/grace.sim">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/worldsim/worldsim.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="460" column="28" lean-forward="true" selection-start-line="460" selection-start-column="28" selection-end-line="460" selection-end-column="28" />
+          <folding>
+            <element signature="e#26#247#0" expanded="false" />
+            <element signature="e#264#768#0" expanded="false" />
+            <element signature="e#785#1926#0" expanded="false" />
+            <element signature="e#1949#2494#0" expanded="false" />
+            <element signature="e#2513#3253#0" expanded="false" />
+            <element signature="e#3275#4143#0" expanded="false" />
+            <element signature="e#4164#6848#0" expanded="false" />
+            <element signature="e#6865#9416#0" expanded="false" />
+            <element signature="e#9439#11763#0" expanded="false" />
+            <element signature="e#11778#12548#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/perceive.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="236" column="29" lean-forward="false" selection-start-line="236" selection-start-column="29" selection-end-line="236" selection-end-column="29" />
+        <state relative-caret-position="1164">
+          <caret line="234" column="29" lean-forward="true" selection-start-line="234" selection-start-column="29" selection-end-line="234" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/evaluate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="83" column="12" lean-forward="false" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/intend.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14352">
+          <caret line="627" column="43" lean-forward="false" selection-start-line="627" selection-start-column="30" selection-end-line="627" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domains/grace/plan/graceProblem.shp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domains/grace/plan/graceDomain.shp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/planning.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="466" column="34" lean-forward="false" selection-start-line="466" selection-start-column="25" selection-end-line="466" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/_plan/asynch/asynch_3d.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="320" column="8" lean-forward="false" selection-start-line="320" selection-start-column="8" selection-end-line="320" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/_plan/asynch/asynch_3d_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="387" column="31" lean-forward="false" selection-start-line="387" selection-start-column="31" selection-end-line="387" selection-end-column="31" />
+        <state relative-caret-position="377">
+          <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>

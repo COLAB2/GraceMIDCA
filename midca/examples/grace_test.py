@@ -45,6 +45,7 @@ for phase in ["Simulate", "Perceive", "Interpret", "Eval", "Intend", "Plan", "Ac
 myMidca.append_module("Simulate", simulator.ASCIIWorldViewer(display=DISPLAY_FUNC))
 myMidca.append_module("Simulate", simulator.MidcaActionSimulator())
 myMidca.append_module("Perceive", perceive.PerfectObserver())
+myMidca.append_module("Perceive", perceive.GraceObserver())
 myMidca.append_module("Interpret", guide.MoosGoalInput())
 myMidca.append_module("Interpret", guide.GraceGoalAnomaly())
 myMidca.append_module("Eval", evaluate.SimpleEval())

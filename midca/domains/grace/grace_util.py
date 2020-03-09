@@ -79,8 +79,8 @@ def jshop2_tasks_from_goals(goals,pyhopState, STATE_FILE):
             args.pop(0)
         if predicate == "communicated_depth":
             f.write("(communicated_depth " +  args[0] + " " +  args[1] + " " +  args[2] + ")\n")
-        elif predicate == "cleaned_vines":
-            f.write("(cleaned_vines " +  args[0] + ")\n")
+        elif predicate == "cleaned_remora":
+            f.write("(cleaned_remora " +  args[0] + ")\n")
         else:
             raise Exception("No task corresponds to predicate " + predicate)
     f.write(" ))))")

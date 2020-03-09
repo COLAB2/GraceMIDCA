@@ -54,9 +54,10 @@ class Memory:
 	EXPLANATION_VAL = "__explanation_val"
 
 	#GRACE
-	ANOMALY = "__anomaly"
     SENSE_DEPTH = "__realdepth"
-    DEPTH = "_abstracteddepth"
+	RAISE_FLAG = "__raiseflag"
+	DIVE_FLAG = "__diveflag"
+	OBSERVED_STATES = "__observedstates"
 
     	#Goal Tranformation
     	CL_TREE = "__class heirarchy tree"

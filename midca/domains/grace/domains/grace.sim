@@ -5,7 +5,7 @@ predicate(communicated_depth, [grace, fumin, pooldepth], [agent, agent, depth_va
 predicate(sensed_depth, [grace, pooldepth], [agent, depth_value])
 predicate(recorded_depth, [grace, pooldepth], [agent, depth_value])
 predicate(emptied_sand, [grace], [agent])
-predicate(cleaned_vines, [grace], [agent])
+predicate(cleaned_remora, [grace], [agent])
 predicate(at_pooldepth, [grace, pooldepth], [agent, depth_value])
 predicate(enabled, [grace], [agent])
 
@@ -50,9 +50,9 @@ results = [
 	condition(at_pooldepth, [grace, pool_depth1]),
 	condition(at_pooldepth, [grace, pool_depth], negate = True)])
 
-operator(clean,
+operator(glideBack,
 args = [(grace, agent)],
 preconditions = [
 	condition(enabled, [grace])],
 results = [
-	condition(cleaned_vines, [grace])])
+	condition(cleaned_remora, [grace])])

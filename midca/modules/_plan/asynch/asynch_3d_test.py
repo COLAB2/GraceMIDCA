@@ -54,7 +54,7 @@ def asynch_plan(mem, midcaPlan):
         if midcaAction.op == "communicate":
             actions.append(GraceCommunicate(mem, midcaAction))
 
-        elif midcaAction.op == "clean":
+        elif midcaAction.op == "glideBack":
             actions.append(GraceClean(mem, midcaAction))
 
         elif midcaAction.op == "dive":
@@ -62,9 +62,6 @@ def asynch_plan(mem, midcaPlan):
 
         elif midcaAction.op == "raise":
             actions.append(GraceRaise(mem, midcaAction))
-
-        elif midcaAction.op == "sensedepth":
-            actions.append(GraceSense(mem, midcaAction))
 
         elif midcaAction.op == "recorddepth":
             actions.append(GraceRecord(mem, midcaAction))
@@ -213,12 +210,12 @@ class GraceRecord(AsynchAction):
         pass
 
     def check_confirmation(self):
-        if self.time:
-            if (midcatime.now() - self.time) >= 10:
-                return True
-        return False
+        if self.skip:
+            self.skip = False
+            return False
+        return True
 
-
+"""
 class GraceSense(AsynchAction):
     '''
     Grace action that senses depth
@@ -270,7 +267,7 @@ class GraceSense(AsynchAction):
             if (midcatime.now() - self.time) >= 10:
                 return True
         return False
-
+"""
 class GraceClean(AsynchAction):
     '''
     Grace action that cleans itself
@@ -361,55 +358,41 @@ class GraceRaise(AsynchAction):
 
     def implement_action(self):
         self.time = midcatime.now()
-        """
-        Implement the grace raise action
-        """
-        
-        self.GraceAct.stopRegulation()
 
-        if self.action.args[2] == "surface":
+        # to implement raise action once.
+        raise_flag = self.mem.get(self.mem.RAISE_FLAG)
+
+        if not raise_flag:
             """
-                implement the action to be at surface
+                Implement the raise action to go to surface
             """
-            # how to know if it is at the surface
-            self.GraceAct.gotToDepth(0)
-            
-        elif self.action.args[2] == "shallow":
-            """
-                Implement the thread to raise between 10 and 20 units
-            """
-            self.GraceAct.gotToDepth(15)
-            
-        elif self.action.args[2] == "veryshallow":
-            """
-                Implement the thread to raise between 20 and 40 units
-            """
-            self.GraceAct.gotToDepth(30)
-            
-        elif self.action.args[2] == "medium":
-            """
-                Implement the thread to raise between 40 and 60 units
-            """
-            self.GraceAct.gotToDepth(50)
-            
-        elif self.action.args[2] == "deep":
-            """
-                Implement the thread to raise between 60 and 80 units
-            """
-            self.GraceAct.gotToDepth(70)
-            
-        elif self.action.args[2] == "verydeep":
-            """
-                Implement the thread to raise between 80 and 100 units
-            """
-            self.GraceAct.gotToDepth(90)
+            self.GraceAct.gotToDepth(0) #x in meters, so units need to be converted to meters
+        else:
+            # to set dive flag to false after implementing raise.
+            self.mem.set(self.mem.DIVE_FLAG, False)
 
     def check_confirmation(self):
-        if self.time:
-            if (midcatime.now() - self.time) >= 10:
-                self.mem.set(self.mem.DEPTH, None)
-                return True
-                
+        speed = "implement function to get speed"
+        time_taken = None
+        if speed:
+            if self.action.args[2] == "veryshallow":
+                time_taken = 15 / speed
+
+            elif self.action.args[2] == "shallow":
+                time_taken = 35 / speed
+
+            elif self.action.args[2] == "medium":
+                time_taken = 55 / speed
+
+            elif self.action.args[2] == "deep":
+                time_taken = 75 / speed
+
+            elif self.action.args[2] == "verydeep":
+                time_taken = 95 / speed
+
+            if self.time:
+                if (midcatime.now() - self.time) >= time_taken:
+                    return True
         return False
 
 
@@ -431,50 +414,39 @@ class GraceDive(AsynchAction):
 
     def implement_action(self):
         self.time = midcatime.now()
-        
-        self.GraceAct.stopRegulation()
-            
-        elif self.action.args[2] == "shallow":
+
+        # to implement dive action once.
+        dive_flag = self.mem.get(self.mem.DIVE_FLAG)
+
+        if not dive_flag:
             """
-                Implement the thread to dive between 10 and 20 units
+                Implement the dive action to go to bottom
             """
-            self.GraceAct.gotToDepth(15) #x in meters, so units need to be converted to meters
-            
-        elif self.action.args[2] == "veryshallow":
-            """
-                Implement the thread to dive between 20 and 40 units
-            """
-            self.GraceAct.gotToDepth(30)
-            
-        elif self.action.args[2] == "medium":
-            """
-                Implement the thread to dive between 40 and 60 units
-            """
-            self.GraceAct.gotToDepth(50)
-        elif self.action.args[2] == "deep":
-            """
-                Implement the thread to dive between 60 and 80 units
-            """
-            self.GraceAct.gotToDepth(70)
-        elif self.action.args[2] == "verydeep":
-            """
-                Implement the thread to dive between 80 and 100 units
-            """
-            self.GraceAct.gotToDepth(90)
-            
-        elif self.action.args[2] == "bottom":
-            """
-                Dive action to bottom
-            """
-            self.GraceAct.Dive()
-            #self.GraceAct.gotToDepth(maxDepth)
-            pass
-        
-        
+            self.GraceAct.gotToDepth(100) #x in meters, so units need to be converted to meters
+        else:
+            # to set raise flag to false after implementing dive.
+            self.mem.set(self.mem.RAISE_FLAG, False)
 
     def check_confirmation(self):
-        if self.time:
-            if (midcatime.now() - self.time) >= 10:
-                self.mem.set(self.mem.DEPTH, None)
-                return True
+        speed = "implement function to get speed"
+        time_taken = None
+        if speed:
+            if self.action.args[2] == "veryshallow":
+                time_taken = 15/speed
+
+            elif self.action.args[2] == "shallow":
+                time_taken = 35/speed
+
+            elif self.action.args[2] == "medium":
+                time_taken = 55/speed
+
+            elif self.action.args[2] == "deep":
+                time_taken = 75 / speed
+
+            elif self.action.args[2] == "verydeep":
+                time_taken = 95 / speed
+
+            if self.time:
+                if (midcatime.now() - self.time) >= time_taken:
+                    return True
         return False
