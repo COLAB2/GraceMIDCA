@@ -116,7 +116,7 @@ class GraceGoalAnomaly(base.BaseModule):
 			if atom.predicate.name == "at_pooldepth":
 				observed_state = atom
 
-		if expected_state.args[1].name == observed_state.args[1].name:
+		if not expected_state.args[1].name == observed_state.args[1].name:
 			print ("Warning :  Anomaly detected")
 			g = goals.Goal(*["grace"], predicate='Cleaned_Remora')
 			self.mem.get(self.mem.GOAL_GRAPH).insert(g)

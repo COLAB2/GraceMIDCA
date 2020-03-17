@@ -576,7 +576,7 @@ class GraceObserver(base.BaseModule):
             self.robot_interface = GraceAct.GraceMidcaAct()
             self.robot_interface.startSimulation()
             self.mem.set(self.mem.ROBOT_INTERFACE, self.robot_interface)
-        except e:
+        except Exception as e:
             print (e)
         #self.GracePerception = GraceMidcaPercieve()  # initallizes Grace Midca Percive class for easy access to high level signals midca needs
         #self.runningBottomCheck = False  # flag to see if we are already checking for bottom

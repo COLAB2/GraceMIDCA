@@ -1,0 +1,45 @@
+(defdomain travel
+ (
+ (:- (have-taxi-fare ?distance)
+ ((have-cash ?m)
+ (call >= ?m (call + 1.5 ?distance))))
+
+ (:- (walking-distance ?u ?v)
+ ((weather-is good)
+ (distance ?u ?v ?w)
+ (call <= ?w 3))
+  ( (distance ?u ?v ?w)
+ (call <= ?w 0.5)))
+
+ (:method (agent-at ?agent ?destX ?destY)
+
+ ((agent-at ?agent ?origX ?origY)
+ (call >= ?destX ?origX)
+ (call <= ?destY ?origY))
+    ()
+
+ ((agent-at ?agent ?origX ?origY)
+ (call < ?destX ?origX))
+ ((!movewest ?agent ?origX ?origY (call - ?origX 1) ?origY)
+ (agent-at ?agent ?destX ?destY)))
+
+
+ (:operator (!moveeast ?agent ?startX ?startY ?destX ?destY)
+ ((free ?agent) (agent-at ?startX ?startY) (adjacent-east ?startX ?startY ?destX ?destY))
+ ((agent-at ?startX ?startY))
+ ((agent-at ?destX ?destY)))
+
+ (:operator (!movewest ?agent ?startX ?startY ?destX ?destY)
+ ((free ?agent) (agent-at ?startX ?startY) (adjacent-west ?startX ?startY ?destX ?destY))
+ ((agent-at ?startX ?startY))
+ ((agent-at ?destX ?destY)))
+
+ (:operator (!movenorth ?agent ?startX ?startY ?destX ?destY)
+ ((free ?agent) (agent-at ?startX ?startY) (adjacent-north ?startX ?startY ?destX ?destY))
+ ((agent-at ?startX ?startY))
+ ((agent-at ?destX ?destY)))
+
+ (:operator (!movesouth ?agent ?startX ?startY ?destX ?destY)
+ ((free ?agent) (agent-at ?startX ?startY) (adjacent-south ?startX ?startY ?destX ?destY))
+ ((agent-at ?startX ?startY))
+ ((agent-at ?destX ?destY))) ))
