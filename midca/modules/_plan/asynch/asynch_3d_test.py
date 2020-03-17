@@ -4,7 +4,6 @@ import traceback
 import math
 import copy
 import numpy as np
-from GraceAct import GraceMidcaAct
 
 try:
     from geometry_msgs.msg import PointStamped
@@ -192,7 +191,7 @@ class GraceRecord(AsynchAction):
     '''
 
     def __init__(self, mem, midcaAction):
-        self.GraceAct = GraceMidcaAct()
+        self.GraceAct = mem.get(mem.ROBOT_INTERFACE)
         self.mem = mem
         self.action = midcaAction
         self.time = None
@@ -274,7 +273,7 @@ class GraceClean(AsynchAction):
     '''
 
     def __init__(self, mem, midcaAction):
-        self.GraceAct = GraceMidcaAct()
+        self.GraceAct = mem.get(mem.ROBOT_INTERFACE)
         self.mem = mem
         self.action = midcaAction
         self.time = None
@@ -302,7 +301,7 @@ class GraceCommunicate(AsynchAction):
     '''
 
     def __init__(self, mem, midcaAction):
-        self.GraceAct = GraceMidcaAct()
+        self.GraceAct = mem.get(mem.ROBOT_INTERFACE)
         self.mem = mem
         self.time = None
         self.skip = True
@@ -325,19 +324,7 @@ class GraceCommunicate(AsynchAction):
 
     def check_confirmation(self):# read a file output by program chechinkg for surface and return true or false
         # sending $%GO%$ over xbee will cause a file "Next_Dive_GO" to be produce with 1 in line one
-        Acknowleged = False
-        gracePath = self.gracePath+"/"
-        try:
-            f = open(gracePath + "Next_Dive_GO", 'r')
-            Acknowleged = (1 == int(f.readline()))
-            f.close()
-            if Acknowleged:
-                f=open(gracePath+"Next_Dive_GO",'w')
-                f.write("0")
-                f.close()
-        except:
-            return False
-        return Acknowleged
+        return self.GraceAct.checkCommunicationAck()
 
 
 class GraceRaise(AsynchAction):
@@ -346,7 +333,7 @@ class GraceRaise(AsynchAction):
     '''
 
     def __init__(self, mem, midcaAction):
-        self.GraceAct = GraceMidcaAct()
+        self.GraceAct = mem.get(mem.ROBOT_INTERFACE)
         self.action = midcaAction
         self.mem = mem
         self.time = None
@@ -366,7 +353,9 @@ class GraceRaise(AsynchAction):
             """
                 Implement the raise action to go to surface
             """
+            self.GraceAct.stopRegulation()
             self.GraceAct.gotToDepth(0) #x in meters, so units need to be converted to meters
+            self.mem.set(self.mem.RAISE_FLAG, True)
         else:
             # to set dive flag to false after implementing raise.
             self.mem.set(self.mem.DIVE_FLAG, False)
@@ -376,19 +365,19 @@ class GraceRaise(AsynchAction):
         time_taken = None
         if speed:
             if self.action.args[2] == "veryshallow":
-                time_taken = 15 / speed
+                time_taken = 0.5 / speed
 
             elif self.action.args[2] == "shallow":
-                time_taken = 35 / speed
+                time_taken = 1.5 / speed
 
             elif self.action.args[2] == "medium":
-                time_taken = 55 / speed
+                time_taken = 2.5 / speed
 
             elif self.action.args[2] == "deep":
-                time_taken = 75 / speed
+                time_taken = 3.5 / speed
 
             elif self.action.args[2] == "verydeep":
-                time_taken = 95 / speed
+                time_taken = 4.5 / speed
 
             if self.time:
                 if (midcatime.now() - self.time) >= time_taken:
@@ -402,7 +391,7 @@ class GraceDive(AsynchAction):
     '''
 
     def __init__(self, mem, midcaAction):
-        self.GraceAct = GraceMidcaAct()
+        self.GraceAct = mem.get(mem.ROBOT_INTERFACE)#GraceMidcaAct()
         self.action = midcaAction
         self.mem = mem
         self.time = None
@@ -422,29 +411,31 @@ class GraceDive(AsynchAction):
             """
                 Implement the dive action to go to bottom
             """
-            self.GraceAct.gotToDepth(100) #x in meters, so units need to be converted to meters
+            self.GraceAct.stopRegulation()
+            self.GraceAct.gotToDepth(6) #x in meters, so units need to be converted to meters
+            self.mem.set(self.mem.DIVE_FLAG, True)
         else:
             # to set raise flag to false after implementing dive.
             self.mem.set(self.mem.RAISE_FLAG, False)
 
     def check_confirmation(self):
-        speed = "implement function to get speed"
+        speed = self.GraceAct.estimateDepthRate(0.5)#"implement function to get speed" arguement is time used to wait to estimate speed
         time_taken = None
         if speed:
             if self.action.args[2] == "veryshallow":
-                time_taken = 15/speed
+                time_taken = 0.5/speed
 
             elif self.action.args[2] == "shallow":
-                time_taken = 35/speed
+                time_taken = 1.5/speed
 
             elif self.action.args[2] == "medium":
-                time_taken = 55/speed
+                time_taken = 2.5/speed
 
             elif self.action.args[2] == "deep":
-                time_taken = 75 / speed
+                time_taken = 3.5 / speed
 
             elif self.action.args[2] == "verydeep":
-                time_taken = 95 / speed
+                time_taken = 4.5/ speed
 
             if self.time:
                 if (midcatime.now() - self.time) >= time_taken:

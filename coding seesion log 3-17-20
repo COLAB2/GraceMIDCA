@@ -1,0 +1,216 @@
+Hi Sravya!
+
+Hi Demetris,how are you?
+
+Good. How are you?
+
+Good! Let us start.
+
+Ok. We need to make a minor change to the code. I will show you the example really quick.
+
+We just need to call that command in the midca code to start simulation and then stop it using
+stopSimulation command before midca closes.
+
+Sure, so I should call the simulation during the initialize time and stop it when it closes? 
+
+Yes.
+
+is it a python thread? if so then exiting midca will automatically closes it right?
+
+Not necessarily. It can continue to run in the background sometime, but it isn't difficult to kill if
+that happens.
+
+Sure. how does the simulator work?
+
+This function mimics the physical motion of the robot (like
+speed, position, and so on) by integrating the physiscs
+based equations and then you can acess the position
+information using the same functions we did initially.
+
+can we call this in percieve phase as well?
+
+You can, but to have them setup to have the same info, 
+you would need tho use the same object in both percieve and
+act.
+
+got you, ok I will first initialize this in percieve and
+store the object in memory. that should be fine right?
+
+yes.
+
+I will go ahead and open percieve.py
+
+I think I need to have the class definition in here,
+
+You can import like so
+
+sure ! where is it located ?
+
+It is in the same folder as the act module.
+
+Do you mind if i change the location of it ?
+
+We can just import that path. I don't mind, but we would
+have to change act module because put the object there
+initially. Which ever is easier for you.
+
+The only reason I want to change the location of GraceAct.py
+is to be consistent with midca. We usually have domain 
+specific information in domains folder. 
+
+That is fine as long as you can still import it in the 
+midca modules.
+
+sure.
+
+so what should I do with this.
+
+You no longer need it correct?
+I thought this was a different example
+
+Ok ! I need to percieve depth in percieve phase. 
+
+
+You can do it with the other class. 
+
+sure. Let me know if I do anything wrong
+
+Just to clarify. This still works with the physical robot,
+but calling the simmulation function allows you to use
+the simulated information rather that the real robot
+info. If you don't call it, we will just read physical
+sensors.
+
+sure. I will change the name
+
+THat should work right?
+
+Yes. The depth is in meters correct?
+
+Sure. then 20 might be too much right ?
+
+Yea. That was what I was going to say.
+
+ok what could be the maximum depth the robot can dive?
+SO that I can have the idea of the scale.
+
+Supposedly, it can dive to 20 meters, but it would just
+take for ever. If you look at the terminal. That
+took 191 seconds to go to 5 meters and then back up to
+3.
+
+sure. 
+
+that should do it, let me go to act phase 
+and do the necessary changes
+
+That is correct right?
+
+Yes.
+
+Tha communicateDepth function will still work right?
+
+Yes
+
+I see you have written some function for this 
+
+Yes. All the functionality that we orignally had for the
+graceMidcaAct class i moved to the new one and added
+simulation functionality.
+
+
+Nice. I will then change the code there
+
+I think I am done making changes
+
+ok. One last thing. remove the import statement from begining 
+of act module
+
+done. Lets test if this works
+
+Let's do it.
+
+May have to close and check in a text editor.
+The ide does wierd things with spaces and tabs sometimes.
+
+Sure. 
+
+Do we have a text editor here ?
+
+
+Yes. Just right click the file and open it with text editor.
+
+ok
+
+just a minute. I will solve the error
+
+ok.
+
+Do you want to run without the simulator until you figure
+out the bugs?
+
+No I gave the wrong goal. I havent tested the interpret
+code because I did not have an actual anomaly. Now
+that you wrote the simulator I should test it. Let me
+do it one more time to check if I have no problem with
+simulator and then I can work on my code.
+
+
+ok.
+
+my mistake. let me test this function befor you run the 
+midca code again.
+
+
+
+sure, no problem
+
+ok. it's working. Just need to fix it in the other folder.
+
+
+
+thanks
+
+I will try to run midca again
+
+Are you calling the dive function multiple times without
+stopping the previous dive?
+
+just a sec, I see the problem. 
+
+No, I am jsut calling it once. I will show you where
+Let me direct you to the file. I think i have to set the dive
+flag. just a sec. That should do it. Let me run it ag.
+my mistake
+
+no problem. before you run it again. Do you call the 
+action again for raise?
+
+yes I do. 
+
+Do you stop the regulation in between?
+
+I am not sure about that. I dont think I did.
+
+It should be something like this "stopRegulation()" when
+you are done diving and want to use the comand to go to
+a different step. 
+
+Sure. Right now the agent will go directly to the depth
+instead of intermediete depths and rise. So there will
+only be one rais and one dive action. I will use 
+that before raise action.
+
+I will run it again
+
+ok.
+
+It is working. I have to make a few changes to test anamoly.
+at this point I think i can do it myself. I will let
+you know if something is wrong. I will complete it in
+an hour or so.thank you 
+
+No problem. Text or email me if you need something. I am
+going to go get some food. If you get it working tonight
+suprise me in the meeting tommorrow!
+

@@ -571,10 +571,17 @@ class GraceObserver(base.BaseModule):
         if not world:
             raise ValueError("world is None!")
         self.world = world
-        self.GracePerception = GraceMidcaPercieve()  # initallizes Grace Midca Percive class for easy access to high level signals midca needs
-        self.runningBottomCheck = False  # flag to see if we are already checking for bottom
+        try:
+            from midca.domains.grace import GraceAct
+            self.robot_interface = GraceAct.GraceMidcaAct()
+            self.robot_interface.startSimulation()
+            self.mem.set(self.mem.ROBOT_INTERFACE, self.robot_interface)
+        except e:
+            print (e)
+        #self.GracePerception = GraceMidcaPercieve()  # initallizes Grace Midca Percive class for easy access to high level signals midca needs
+        #self.runningBottomCheck = False  # flag to see if we are already checking for bottom
         # can initialize here ..
-
+        
 
     # perfect observation
     def observe(self):
@@ -591,27 +598,27 @@ class GraceObserver(base.BaseModule):
         '''
         The following code gets the depth to create observed states for the world.
         '''
-        depth = self.GracePerception.senseDepth()
+        depth = self.robot_interface.senseDepth()
 
         states = ""
-        if (depth <= 5):
+        if (depth <= 0.5):
             states += "at_pooldepth(grace, surface)\n"
 
-        elif (depth >= 5 and depth <= 20):
+        elif (depth >= 0.5 and depth <= 1.5):
             # depth is at surface
             states += "at_pooldepth(grace, veryshallow)\n"
 
-        elif (depth >= 20 and depth <= 40):
+        elif (depth >= 1.5 and depth <= 2.5):
             # depth is at veryshallow
             states += "at_pooldepth(grace, shallow)\n"
 
-        elif (depth >= 40 and depth <= 60):
+        elif (depth >= 2.5 and depth <= 3.5):
             states += "at_pooldepth(grace, medium)\n"
 
-        elif (depth >= 60 and depth <= 80):
+        elif (depth >= 3.5 and depth <= 4.5):
             states += "at_pooldepth(grace, deep)\n"
 
-        elif (depth >= 80 and depth <= 100):
+        elif (depth >= 4.5 and depth <= 5.5):
             states += "at_pooldepth(grace, verydeep)\n"
 
         else:

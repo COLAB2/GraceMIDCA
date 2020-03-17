@@ -96,6 +96,10 @@ class GraceGoalAnomaly(base.BaseModule):
     '''
     MIDCA module that allows users to input goals in a predicate representation when there is no goal in the goal graph.
     '''
+    
+    def init(self, world, mem):
+        self.world = world
+        self.mem = mem
 
     def run(self, cycle, verbose = 2):
 		observed_world = self.mem.get(self.mem.OBSERVED_STATES)[-1]

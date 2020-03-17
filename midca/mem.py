@@ -54,7 +54,7 @@ class Memory:
 	EXPLANATION_VAL = "__explanation_val"
 
 	#GRACE
-    SENSE_DEPTH = "__realdepth"
+        SENSE_DEPTH = "__realdepth"
 	RAISE_FLAG = "__raiseflag"
 	DIVE_FLAG = "__diveflag"
 	OBSERVED_STATES = "__observedstates"
@@ -85,7 +85,7 @@ class Memory:
     	ACTUAL_COST= "__actual cost"
     	
     	#Grace Domain
-    	SENSE_DEPTH = "__store depth"
+        ROBOT_INTERFACE = "__robot interface"
 
 	def __init__(self, args = {}):
 		self.knowledge = {}

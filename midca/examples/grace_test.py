@@ -47,7 +47,7 @@ myMidca.append_module("Simulate", simulator.MidcaActionSimulator())
 myMidca.append_module("Perceive", perceive.PerfectObserver())
 myMidca.append_module("Perceive", perceive.GraceObserver())
 myMidca.append_module("Interpret", guide.MoosGoalInput())
-myMidca.append_module("Interpret", guide.GraceGoalAnomaly())
+#myMidca.append_module("Interpret", guide.GraceGoalAnomaly())
 myMidca.append_module("Eval", evaluate.SimpleEval())
 myMidca.append_module("Intend", intend.SimpleIntend())
 myMidca.append_module("Plan", planning.JSHOPPlannerTest(grace_util.jshop2_state_from_world,
