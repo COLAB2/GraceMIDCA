@@ -53,7 +53,7 @@ def asynch_plan(mem, midcaPlan):
         if midcaAction.op == "communicate":
             actions.append(GraceCommunicate(mem, midcaAction))
 
-        elif midcaAction.op == "glideBack":
+        elif midcaAction.op == "glideback":
             actions.append(GraceClean(mem, midcaAction))
 
         elif midcaAction.op == "dive":
@@ -327,7 +327,12 @@ class GraceCommunicate(AsynchAction):
 
     def check_confirmation(self):# read a file output by program chechinkg for surface and return true or false
         # sending $%GO%$ over xbee will cause a file "Next_Dive_GO" to be produce with 1 in line one
-        return self.GraceAct.checkCommunicationAck()
+        if self.GraceAct.checkCommunicationAck():
+            return True
+        else:
+            #communicate again if not recieved
+            self.GraceAct.communicateDepth(self.depth)
+            return False
 
 
 class GraceRaise(AsynchAction):
@@ -366,7 +371,7 @@ class GraceRaise(AsynchAction):
             
 
     def check_confirmation(self):
-        speed = self.GraceAct.estimateDepthRate(0.5)#"implement function to get speed" arguement is time used to wait to estimate speed
+        speed = abs(self.GraceAct.estimateDepthRate(0.5))#"implement function to get speed" arguement is time used to wait to estimate speed
         print("speed is" + str(speed))
         if speed and self.time:
             if self.action.args[2] == "veryshallow":
@@ -434,7 +439,7 @@ class GraceDive(AsynchAction):
             self.mem.set(self.mem.RAISE_FLAG, False)
 
     def check_confirmation(self):
-        speed = self.GraceAct.estimateDepthRate(0.5)#"implement function to get speed" arguement is time used to wait to estimate speed
+        speed = abs(self.GraceAct.estimateDepthRate(0.5))#"implement function to get speed" arguement is time used to wait to estimate speed
         print("speed is" + str(speed))
         if speed and self.time:
             if self.action.args[2] == "veryshallow":

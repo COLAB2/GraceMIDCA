@@ -47,7 +47,7 @@ myMidca.append_module("Simulate", simulator.MidcaActionSimulator())
 myMidca.append_module("Perceive", perceive.PerfectObserver())
 myMidca.append_module("Perceive", perceive.GraceObserver())
 myMidca.append_module("Interpret", guide.MoosGoalInput())
-#myMidca.append_module("Interpret", guide.GraceGoalAnomaly())
+myMidca.append_module("Interpret", guide.GraceGoalAnomaly())
 myMidca.append_module("Eval", evaluate.SimpleEval())
 myMidca.append_module("Intend", intend.SimpleIntend())
 myMidca.append_module("Plan", planning.JSHOPPlannerTest(grace_util.jshop2_state_from_world,
@@ -62,7 +62,7 @@ myMidca.append_module("Act", act.AsynchronousAct())
 myMidca.storeHistory = True
 myMidca.initGoalGraph(cmpFunc = GOAL_GRAPH_CMP_FUNC)
 myMidca.init()
-myMidca.run(usingInterface=True)
+myMidca.run(usingInterface=False)
 
 '''
 The code below would print out MIDCA's goal set for the first 20 phases of the run above. Note that any memory values can be accessed in this way, assuming that the storeHistory value was set to True during the run. This code is left as an example, but commented out because it will throw an error if fewer than 20 cycles were simulated.

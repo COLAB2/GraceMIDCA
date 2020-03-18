@@ -50,7 +50,7 @@ results = [
 	condition(at_pooldepth, [grace, pool_depth1]),
 	condition(at_pooldepth, [grace, pool_depth], negate = True)])
 
-operator(glideBack,
+operator(glideback,
 args = [(grace, agent)],
 preconditions = [
 	condition(enabled, [grace])],

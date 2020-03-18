@@ -121,8 +121,8 @@ class GraceGoalAnomaly(base.BaseModule):
 			g = goals.Goal(*["grace"], predicate='cleaned_remora')
 			self.mem.get(self.mem.GOAL_GRAPH).insert(g)
 			print("Midca generated a goal : " + str(g))
-            #make expectations same as observations
-            self.world = observed_world.copy()
+            	#make expectations same as observations
+                self.world = observed_world.copy()
 
 class SimpleMortarGoalGen(base.BaseModule):
     '''

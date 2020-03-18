@@ -214,3 +214,60 @@ No problem. Text or email me if you need something. I am
 going to go get some food. If you get it working tonight
 suprise me in the meeting tommorrow!
 
+sure. Thanks for all the help. I appreciate it.
+
+No problem. See you later.
+
+
+
+Bye. 
+
+
+*****************************************************
+
+I got this error
+
+
+RuntimeWarning: overflow encountered in double_scalars
+  M2=0.5 * rho * V ** 2 * S * (C_M0 + C_alpha_MP * alpha + K_q2 * omega2)
+
+****** Starting Interpret Phase ******
+
+
+Next MIDCA command:  state:  [[ -9.89732960e+199]
+ [  0.00000000e+000]
+ [  0.00000000e+000]
+ [ -7.94682984e+241]
+ [  0.00000000e+000]
+ [ -6.78881874e+241]
+ [              nan]
+ [              nan]
+ [              nan]
+ [  7.11868789e+242]
+ [  0.00000000e+000]
+ [  9.12626690e+242]
+ [  0.00000000e+000]
+ [  1.00000000e+000]
+ [  0.00000000e+000]
+ [ -9.12626690e+242]
+ [  0.00000000e+000]
+ [  7.11868789e+242]]
+dx: [[ -2.07843922e+201]
+ [  0.00000000e+000]
+ [ -2.09684967e+200]
+ [ -1.66883427e+243]
+ [  0.00000000e+000]
+ [ -1.42565194e+243]
+ [              nan]
+ [              nan]
+ [              nan]
+ [  1.49492446e+244]
+ [  0.00000000e+000]
+ [  1.91651605e+244]
+ [  0.00000000e+000]
+ [  1.00000000e+000]
+ [  0.00000000e+000]
+ [ -1.91651605e+244]
+ [  0.00000000e+000]
+ [  1.49492446e+244]]
+277.95

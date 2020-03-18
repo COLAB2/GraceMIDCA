@@ -23,7 +23,7 @@ def jshop(tasks, DOMAIN_FIILE, STATE_FILE):
 
 
     for line in p.stdout:
-        print line
+        #print line
         if(line.startswith(" (")):
             plan = line
             break
