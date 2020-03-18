@@ -29,7 +29,7 @@ def jshop(tasks, DOMAIN_FIILE, STATE_FILE):
             break
 
     if(plan):
-        Jshop_plan = graceParse(parse(plan))
+        Jshop_plan = parse(plan)
 
     return Jshop_plan
 

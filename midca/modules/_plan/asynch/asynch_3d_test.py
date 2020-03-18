@@ -286,12 +286,15 @@ class GraceClean(AsynchAction):
 
     def implement_action(self):
         self.time = midcatime.now()
+        self.GraceAct.stopRegulation()
+        self.mem.set(self.mem.RAISE_FLAG, False)
+        self.mem.set(self.mem.DIVE_FLAG, False)
         pass
 
     def check_confirmation(self):
-        if self.time:
-            if (midcatime.now() - self.time) >= 10:
+        if not self.skip:
                 return True
+        self.skip = False
         return False
 
 
@@ -337,6 +340,7 @@ class GraceRaise(AsynchAction):
         self.action = midcaAction
         self.mem = mem
         self.time = None
+        self.time_taken = None
         self.complete = False
         executeAction = lambda mem, midcaAction, status: self.implement_action()
         completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
@@ -359,30 +363,40 @@ class GraceRaise(AsynchAction):
         else:
             # to set dive flag to false after implementing raise.
             self.mem.set(self.mem.DIVE_FLAG, False)
+            
 
     def check_confirmation(self):
-        speed = "implement function to get speed"
-        time_taken = None
-        if speed:
+        speed = self.GraceAct.estimateDepthRate(0.5)#"implement function to get speed" arguement is time used to wait to estimate speed
+        print("speed is" + str(speed))
+        if speed and self.time:
             if self.action.args[2] == "veryshallow":
-                time_taken = 0.5 / speed
+                if not self.time_taken:
+                    self.time_taken = 0.4/speed
 
             elif self.action.args[2] == "shallow":
-                time_taken = 1.5 / speed
+                if not self.time_taken:
+                    self.time_taken = 0.9/speed
 
             elif self.action.args[2] == "medium":
-                time_taken = 2.5 / speed
+                if not self.time_taken:
+                    self.time_taken = 0.9/speed
 
             elif self.action.args[2] == "deep":
-                time_taken = 3.5 / speed
+                if not self.time_taken:
+                    self.time_taken = 0.9/speed
 
             elif self.action.args[2] == "verydeep":
-                time_taken = 4.5 / speed
+                if not self.time_taken:
+                    self.time_taken = 0.9/speed
 
             if self.time:
-                if (midcatime.now() - self.time) >= time_taken:
+                print("Time taken is" + str(self.time_taken))
+                print("Time elapsed is" + str(midcatime.now() - self.time))
+                if (midcatime.now() - self.time) >= self.time_taken:
                     return True
         return False
+
+
 
 
 class GraceDive(AsynchAction):
@@ -395,6 +409,7 @@ class GraceDive(AsynchAction):
         self.action = midcaAction
         self.mem = mem
         self.time = None
+        self.time_taken = None
         self.complete = False
         executeAction = lambda mem, midcaAction, status: self.implement_action()
         completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
@@ -420,24 +435,31 @@ class GraceDive(AsynchAction):
 
     def check_confirmation(self):
         speed = self.GraceAct.estimateDepthRate(0.5)#"implement function to get speed" arguement is time used to wait to estimate speed
-        time_taken = None
-        if speed:
+        print("speed is" + str(speed))
+        if speed and self.time:
             if self.action.args[2] == "veryshallow":
-                time_taken = 0.5/speed
+                if not self.time_taken:
+                    self.time_taken = 0.4/speed
 
             elif self.action.args[2] == "shallow":
-                time_taken = 1.5/speed
+                if not self.time_taken:
+                    self.time_taken = 0.9/speed
 
             elif self.action.args[2] == "medium":
-                time_taken = 2.5/speed
+                if not self.time_taken:
+                    self.time_taken = 0.9/speed
 
             elif self.action.args[2] == "deep":
-                time_taken = 3.5 / speed
+                if not self.time_taken:
+                    self.time_taken = 0.9/speed
 
             elif self.action.args[2] == "verydeep":
-                time_taken = 4.5/ speed
+                if not self.time_taken:
+                    self.time_taken = 0.9/speed
 
             if self.time:
-                if (midcatime.now() - self.time) >= time_taken:
+                print("Time taken is" + str(self.time_taken))
+                print("Time elapsed is" + str(midcatime.now() - self.time))
+                if (midcatime.now() - self.time) >= self.time_taken:
                     return True
         return False

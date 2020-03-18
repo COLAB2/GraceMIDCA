@@ -118,9 +118,11 @@ class GraceGoalAnomaly(base.BaseModule):
 
 		if not expected_state.args[1].name == observed_state.args[1].name:
 			print ("Warning :  Anomaly detected")
-			g = goals.Goal(*["grace"], predicate='Cleaned_Remora')
+			g = goals.Goal(*["grace"], predicate='cleaned_remora')
 			self.mem.get(self.mem.GOAL_GRAPH).insert(g)
 			print("Midca generated a goal : " + str(g))
+            #make expectations same as observations
+            self.world = observed_world.copy()
 
 class SimpleMortarGoalGen(base.BaseModule):
     '''

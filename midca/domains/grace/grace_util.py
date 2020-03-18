@@ -13,9 +13,9 @@ def preferApprehend(goal1, goal2):
     if 'predicate' not in goal1 or 'predicate' not in goal2:
         return 0
 
-    elif goal1['predicate'] == 'cleaned_vines' and goal2['predicate'] != 'cleaned_vines':
+    elif goal1['predicate'] == 'cleaned_remora' and goal2['predicate'] != 'cleaned_remora':
         return -1
-    elif goal1['predicate'] != 'cleaned_vines' and goal2['predicate'] == 'cleaned_vines':
+    elif goal1['predicate'] != 'cleaned_remora' and goal2['predicate'] == 'cleaned_remora':
         return 1
 
     return 0
