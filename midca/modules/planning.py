@@ -518,8 +518,12 @@ class JSHOPPlannerTest(base.BaseModule):
             if not plan:
                 return None
             try:
+                # validate_plan checks if the action failed in
+                # real world
+                # we should also check if the plan still
+                # achieves our goals
                 if self.validate_plan:
-                    valid = self.validate_plan(plan)
+                    valid = self.validate_plan(plan) and self.world.async_plan_correct(plan)
                     if valid:
                         if verbose >= 2:
                             print "Old plan found that tests as valid:", plan

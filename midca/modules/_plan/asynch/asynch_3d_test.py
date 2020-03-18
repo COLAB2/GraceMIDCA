@@ -69,7 +69,7 @@ def asynch_plan(mem, midcaPlan):
             if verbose >= 1:
                 print "MIDCA action", midcaAction, "does not correspond to an asynch",
                 "action. MIDCA will skip this action"
-    return AsynchPlan(actions, goals)
+    return AsynchPlan(actions, goals, midcaPlan)
 
 
 class AsynchPlan(plans.Plan):
