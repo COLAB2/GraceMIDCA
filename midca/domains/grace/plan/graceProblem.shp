@@ -1,8 +1,8 @@
 
 (defproblem problem fish-diving ((loc)
 
-(at_pooldepth grace surface)
-(enabled grace )
+(at_pooldepth grace very_shallow)
+(enabled grace)
 )
  ((achieve-goals (list
 (communicated_depth grace fumin bottom)

@@ -29,7 +29,7 @@ def jshop(tasks, DOMAIN_FIILE, STATE_FILE):
             break
 
     if(plan):
-        Jshop_plan = graceParse(parse(plan))
+        Jshop_plan = parse(plan)
 
     return Jshop_plan
 
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     thisDir =  os.path.dirname(os.path.realpath(__file__))
 #     thisDir = "C:/Users/Zohreh/git/midca/modules/_plan/jShop/"
     MIDCA_ROOT = thisDir + "/../../../"
-    DOMAIN_FIILE = MIDCA_ROOT + "domains/grace/plan/testDomain.shp"
+    DOMAIN_FIILE = MIDCA_ROOT + "domains/grace/plan/graceDomain.shp"
 #     #DOMAIN_FIILE = JSHOP_ROOT + "domains/jshop_domains/blocks_world/blocksworld.shp"
-    STATE_FILE = MIDCA_ROOT + "domains/grace/plan/testProblem.shp"
+    STATE_FILE = MIDCA_ROOT + "domains/grace/plan/graceProblem.shp"
     jshop("tasks", DOMAIN_FIILE, STATE_FILE)
