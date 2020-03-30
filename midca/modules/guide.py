@@ -100,6 +100,9 @@ class GraceGoalAnomaly(base.BaseModule):
     def init(self, world, mem):
         self.world = world
         self.mem = mem
+        # variable required for calculation of discrepency validity
+        # if the discrepency exists for atleast 5 sec then confirm it as discrepency
+        self.time = None
 
     def run(self, cycle, verbose = 2):
 		observed_world = self.mem.get(self.mem.OBSERVED_STATES)[-1]
@@ -117,12 +120,24 @@ class GraceGoalAnomaly(base.BaseModule):
 				observed_state = atom
 
 		if not expected_state.args[1].name == observed_state.args[1].name:
-			print ("Warning :  Anomaly detected")
-			g = goals.Goal(*["grace"], predicate='cleaned_remora')
-			self.mem.get(self.mem.GOAL_GRAPH).insert(g)
-			print("Midca generated a goal : " + str(g))
-            	#make expectations same as observations
-                self.world = observed_world.copy()
+            		# if the discrepency exists for atleast 5 sec then confirm it as discrepency
+            		if not self.time:
+                		self.time = midcatime.now()
+                		return 
+            		elif (midcatime.now() - self.time) < 5:
+                		return
+            		else:
+                		print ("Warning :  Anomaly detected")
+                		g = goals.Goal(*["grace"], predicate='cleaned_remora')
+                		self.mem.get(self.mem.GOAL_GRAPH).insert(g)
+                		print("Midca generated a goal : " + str(g))
+
+                    		#make expectations same as observations
+                    		self.world = observed_world.copy()
+                                self.time = None
+        	else:
+            		self.time = None
+                
 
 class SimpleMortarGoalGen(base.BaseModule):
     '''

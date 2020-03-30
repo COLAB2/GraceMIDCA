@@ -733,7 +733,7 @@ class World:
 
 	def async_plan_correct(self, plan):
 		testWorld = self.copy()
-		for action in plan.get_remaining_steps():
+		for action in plan:
 			if not testWorld.midca_action_applicable(action.midcaAction):
 				return False
 			testWorld.apply_midca_action(action.midcaAction)

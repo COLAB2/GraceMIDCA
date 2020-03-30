@@ -225,7 +225,10 @@ Bye.
 
 *****************************************************
 
-I got this error
+I got these two errors
+
+Error 1: I only got the error once. The problem might be from
+         my end. I thought you might know
 
 
 RuntimeWarning: overflow encountered in double_scalars
@@ -271,3 +274,26 @@ dx: [[ -2.07843922e+201]
  [  0.00000000e+000]
  [  1.49492446e+244]]
 277.95
+
+*****************************************************
+Error 2: During communicate action
+
+Error checking completion status for action communicate(grace, fumin, bottom)  - Assuming                  failure:
+Traceback (most recent call last):
+  File "/home/pi/Desktop/GraceMIDCA/midca/modules/_plan/asynch/asynch_3d_test.py", line 157, in check_complete
+    complete = self.isComplete(self.mem, self.midcaAction, self.status)
+  File "/home/pi/Desktop/GraceMIDCA/midca/modules/_plan/asynch/asynch_3d_test.py", line 314, in <lambda>
+    completionCheck = lambda mem, midcaAction, status: self.check_confirmation()
+  File "/home/pi/Desktop/GraceMIDCA/midca/modules/_plan/asynch/asynch_3d_test.py", line 334, in check_confirmation
+    self.GraceAct.communicateDepth(self.depth)
+  File "/home/pi/Desktop/GraceMIDCA/midca/domains/grace/GraceAct.py", line 35, in communicateDepth
+    f = open(gracePath + "Next_Dive_GO", 'w')
+NameError: global name 'gracePath' is not defined
+
+***************************************************8
+
+Error 2 should be fixed now. The first one has to do with the numerical
+integration failing sometime. It is not your fault, but it will occur
+once in a while. I haven't been able to find what the cause was, but it
+seemed to not happen much so I let it as it was.
+

@@ -504,6 +504,7 @@ class JSHOPPlannerTest(base.BaseModule):
 
         self.validate_plan = lambda plan: asynch_3d.FAILED not in [action.status for action in plan]
 
+        self.converttomidcaplan = lambda plan: [action for action in plan if not(action.status == asynch_3d.COMPLETE)]
         try:
             self.working = True
         except:
@@ -523,7 +524,7 @@ class JSHOPPlannerTest(base.BaseModule):
                 # we should also check if the plan still
                 # achieves our goals
                 if self.validate_plan:
-                    valid = self.validate_plan(plan) and self.world.async_plan_correct(plan)
+                    valid = self.validate_plan(plan) and self.world.async_plan_correct(self.converttomidcaplan(plan))
                     if valid:
                         if verbose >= 2:
                             print "Old plan found that tests as valid:", plan
@@ -535,7 +536,8 @@ class JSHOPPlannerTest(base.BaseModule):
                     if verbose >= 2:
                         print "no validity check specified. assuming old plan is valid."
                         valid = True
-            except:
+            except Exception as e:
+                print (e)
                 if verbose >= 2:
                     print "Error validating plan:", plan
                 valid = False
@@ -555,7 +557,7 @@ class JSHOPPlannerTest(base.BaseModule):
 
     #this will require a lot more error handling, but ignoring now for debugging.
     def run(self, cycle, verbose = 2):
-        world = self.mem.get(self.mem.STATES)[-1]
+        world = self.world
         try:
             goals = self.mem.get(self.mem.CURRENT_GOALS)[-1]
         except:

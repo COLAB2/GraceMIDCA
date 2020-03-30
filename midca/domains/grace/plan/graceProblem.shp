@@ -1,7 +1,7 @@
 
 (defproblem problem fish-diving ((loc)
 
-(at_pooldepth grace verydeep)
+(at_pooldepth grace medium)
 (recorded_depth grace bottom)
 (enabled grace )
 )

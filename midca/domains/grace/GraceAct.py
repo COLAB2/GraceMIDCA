@@ -32,7 +32,7 @@ class GraceMidcaAct():
                 return 0
             else:
                 if random.random() > 0.8:
-                    f = open(gracePath + "Next_Dive_GO", 'w')
+                    f = open(self.gracePath + "Next_Dive_GO", 'w')
                     f.write("1")
                     f.close()
                 return 1
